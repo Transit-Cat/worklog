@@ -584,12 +584,15 @@ function updateTree(){
     return '<div class="root-card" style="border-top:3px solid '+color+'">'+
       '<div class="root-card-inner">'+buildRootRow(root)+buildChildRows(root.id,1)+'</div></div>';
   }).join('');
-  bindTree(listEl);
+  // Replace node to drop any stale event listeners before rebinding
+  var fresh=listEl.cloneNode(true);
+  listEl.parentNode.replaceChild(fresh,listEl);
+  bindTree(fresh);
   var topCleared=S.cleared.filter(function(o){return !o.parentId||!S.cleared.some(function(h){return h.id===o.parentId;});});
   document.getElementById('history-count').textContent=topCleared.length;
   if(S.showHistory)renderHistory();
 }
-function renderObjectives(){updateTree();updateHeader();}
+function renderObjectives(){updateTree();updateHeader();document.getElementById('add-root-row').style.display='none';document.getElementById('btn-show-add').style.display='';}
 
 function closeKebab(){document.querySelectorAll('.kebab-menu').forEach(function(m){m.classList.remove('open');});S.openKebab=null;S.kebabSection=null;}
 document.addEventListener('mousedown',function(e){if(!e.target.closest('.kebab-wrap'))closeKebab();});
