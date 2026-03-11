@@ -552,7 +552,7 @@ function buildRootRow(obj){
 function buildChildRows(parentId,depth){
   if(S.collapsed[parentId])return '';
   var children=S.objectives.filter(function(o){return o.parentId===parentId;});
-  if(!children.length){return S.addingTo===parentId?makeAddChildRow(parentId,getColor(parentId),depth*20):'';}
+  if(!children.length){return '';}
   return children.map(function(obj){
     var isActive=S.activeObjId===obj.id;
     var desc=getDescIds(obj.id),hasDescRec=desc.indexOf(S.activeObjId)>=0;
