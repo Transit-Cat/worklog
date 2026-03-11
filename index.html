@@ -60,8 +60,8 @@ button:hover{opacity:.85}
 #active-time{opacity:.7}
 #active-stop{background:none;border:1px solid #FDDDD5;color:#DA7756;border-radius:6px;padding:3px 10px;font-size:12px}
 #main{max-width:780px;margin:0 auto;padding:24px 20px 60px}
-#objectives-tab,#analytics-tab,#calendar-tab{display:none}
-#objectives-tab.show,#analytics-tab.show,#calendar-tab.show{display:block}
+#objectives-tab,#analytics-tab,#calendar-tab,#brewers-tab,#recipes-tab{display:none}
+#objectives-tab.show,#analytics-tab.show,#calendar-tab.show,#brewers-tab.show,#recipes-tab.show{display:block}
 
 #search-wrap{position:relative;margin-bottom:14px}
 #search-input{width:100%;border:1.5px solid #E5E7EB;border-radius:10px;padding:10px 14px 10px 38px;font-size:13px;color:#374151}
@@ -195,6 +195,132 @@ button:hover{opacity:.85}
 #popup-correct.show{display:flex}
 #popup-mins{flex:1;border:1.5px solid #E5E7EB;border-radius:8px;padding:8px 10px;font-size:13px;color:#374151}
 #btn-popup-save{background:#DA7756;color:white;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600}
+
+/* Rename panel */
+.rename-input{width:100%;border:1.5px solid #E5E7EB;border-radius:6px;padding:7px 10px;font-size:13px;color:#374151;margin-top:8px}
+.rename-input:focus{border-color:#DA7756;box-shadow:0 0 0 3px #DA775614}
+.btn-rename-save{background:#DA7756;color:white;border-radius:6px;padding:6px 14px;font-size:12px;font-weight:500;margin-top:6px}
+
+/* Brewers tab */
+.brew-section-title{font-size:13px;font-weight:600;color:#374151;margin-bottom:10px}
+.brew-card{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:10px}
+.brew-game{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #F3F4F6}
+.brew-game:first-of-type{border-top:none;padding-top:0}
+.brew-team{flex:1;font-size:13px;color:#374151}
+.brew-score{font-size:18px;font-weight:700;color:#111827;min-width:28px;text-align:center}
+.brew-vs{font-size:12px;color:#9CA3AF;flex-shrink:0}
+.brew-status{font-size:11px;color:#9CA3AF;text-align:right;flex-shrink:0}
+.brew-live{color:#E05C5C;font-weight:600;animation:pulse 2s infinite}
+.brew-venue{font-size:11px;color:#9CA3AF;margin-top:2px}
+.brew-date{font-size:12px;color:#6B7280;font-weight:500}
+.brew-loading{font-size:13px;color:#9CA3AF;padding:20px 0;text-align:center}
+.brew-error{font-size:13px;color:#E05C5C;padding:12px;background:#FEF2F2;border-radius:8px;text-align:center}
+.brew-refresh{background:none;border:1.5px solid #E5E7EB;color:#6B7280;border-radius:8px;padding:6px 16px;font-size:12px;margin-bottom:14px}
+
+/* Recipes tab */
+.recipe-card{background:white;border:1px solid #E5E7EB;border-radius:12px;margin-bottom:10px;box-shadow:0 1px 4px rgba(0,0,0,.05);overflow:hidden}
+.recipe-header{display:flex;align-items:center;gap:10px;padding:14px 16px;cursor:pointer;border-bottom:1px solid transparent}
+.recipe-header.open{border-bottom-color:#F3F4F6}
+.recipe-title{flex:1;font-size:15px;font-weight:600;color:#111827}
+.recipe-meta{font-size:11px;color:#9CA3AF}
+.recipe-chevron{font-size:10px;color:#9CA3AF;flex-shrink:0}
+.recipe-body{padding:16px;display:none}
+.recipe-body.open{display:block}
+.recipe-section{margin-bottom:18px}
+.recipe-section-title{font-size:11px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px}
+.ingredient-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid #F9FAFB}
+.ingredient-row:first-of-type{border-top:none}
+.ingredient-dot{width:5px;height:5px;border-radius:50%;background:#D1D5DB;flex-shrink:0}
+.ingredient-text{flex:1;font-size:13px;color:#374151}
+.btn-del-ingredient{background:none;border:none;color:#E5E7EB;font-size:15px;padding:0 3px;flex-shrink:0}
+.btn-del-ingredient:hover{color:#E05C5C}
+.step-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-top:1px solid #F9FAFB}
+.step-row:first-of-type{border-top:none}
+.step-num{width:20px;height:20px;border-radius:50%;background:#F3F4F6;color:#6B7280;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-content{flex:1;min-width:0}
+.step-text{font-size:13px;color:#374151;line-height:1.5}
+.step-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+.step-badge{display:flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:500}
+.step-badge.time{background:#EFF6FF;color:#3B82F6}
+.step-badge.temp{background:#FFF7ED;color:#EA580C}
+.btn-del-step{background:none;border:none;color:#E5E7EB;font-size:15px;padding:0 3px;flex-shrink:0}
+.btn-del-step:hover{color:#E05C5C}
+.recipe-add-row{display:flex;gap:6px;margin-top:8px}
+.recipe-add-input{flex:1;border:1.5px solid #E5E7EB;border-radius:8px;padding:7px 10px;font-size:13px;color:#374151}
+.recipe-add-input:focus{border-color:#DA7756;box-shadow:0 0 0 3px #DA775614}
+.btn-recipe-add{background:#374151;color:white;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:500;flex-shrink:0}
+.step-add-wrap{margin-top:8px}
+.step-add-input{width:100%;border:1.5px solid #E5E7EB;border-radius:8px;padding:7px 10px;font-size:13px;color:#374151;margin-bottom:6px}
+.step-add-input:focus{border-color:#DA7756;box-shadow:0 0 0 3px #DA775614}
+.step-badge-inputs{display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap}
+.step-badge-input{flex:1;min-width:80px;border:1.5px solid #E5E7EB;border-radius:8px;padding:6px 10px;font-size:12px;color:#374151}
+.step-badge-label{font-size:11px;color:#9CA3AF;display:block;margin-bottom:3px}
+#btn-show-add-recipe{width:100%;background:white;border:1.5px dashed #D1D5DB;color:#9CA3AF;border-radius:10px;padding:12px 0;font-size:13px;margin-bottom:12px}
+.new-recipe-row{display:none;gap:8px;margin-bottom:12px}
+#new-recipe-input{flex:1;border:1.5px solid #DA775666;border-radius:10px;padding:10px 14px;font-size:14px;color:#374151;box-shadow:0 0 0 3px #DA775614}
+
+.brew-game{cursor:pointer;transition:background .1s}
+.brew-game:hover{background:#F9FAFB}
+.brew-game.expanded{background:#F9FAFB}
+.brew-game-header{display:flex;align-items:center;gap:10px;padding:10px 0}
+.brew-detail{border-top:1px solid #F3F4F6;padding:12px 0 4px;display:none}
+.brew-detail.open{display:block}
+.brew-detail-loading{font-size:12px;color:#9CA3AF;padding:8px 0}
+.brew-detail-error{font-size:12px;color:#E05C5C;padding:8px 0}
+.linescore-wrap{overflow-x:auto;margin-bottom:12px}
+.linescore{border-collapse:collapse;width:100%;min-width:360px;font-size:11px}
+.linescore th{padding:4px 6px;color:#9CA3AF;font-weight:500;text-align:center;border-bottom:1px solid #F3F4F6}
+.linescore th:first-child{text-align:left;min-width:50px}
+.linescore td{padding:4px 6px;text-align:center;color:#374151;border-bottom:1px solid #F9FAFB}
+.linescore td:first-child{text-align:left;font-weight:500}
+.linescore tr:last-child td{border-bottom:none}
+.linescore .sep{background:#F3F4F6;color:#9CA3AF;font-size:10px;padding:2px 4px}
+.linescore .total{font-weight:700;background:#F9FAFB}
+.boxscore-tabs{display:flex;gap:4px;margin-bottom:10px}
+.bs-tab{background:none;border:1px solid #E5E7EB;border-radius:6px;padding:4px 12px;font-size:11px;color:#6B7280}
+.bs-tab.active{background:#374151;color:white;border-color:#374151}
+.bs-table-wrap{overflow-x:auto}
+.bs-table{border-collapse:collapse;width:100%;font-size:11px;min-width:300px}
+.bs-table th{padding:4px 8px;color:#9CA3AF;font-weight:500;border-bottom:1px solid #F3F4F6;text-align:right;white-space:nowrap}
+.bs-table th:first-child{text-align:left}
+.bs-table td{padding:4px 8px;color:#374151;border-bottom:1px solid #F9FAFB;text-align:right;white-space:nowrap}
+.bs-table td:first-child{text-align:left;font-weight:500}
+.bs-table tr:last-child td{border-bottom:none}
+.bs-table .totals-row td{font-weight:700;background:#F9FAFB;border-top:1px solid #E5E7EB}
+.bs-section-head{font-size:11px;font-weight:600;color:#6B7280;padding:8px 0 4px;text-transform:uppercase;letter-spacing:.05em}
+
+/* Brewers layout */
+.brew-layout{display:flex;gap:14px;align-items:flex-start}
+.brew-main{flex:1;min-width:0}
+.brew-sidebar{width:190px;flex-shrink:0}
+.brew-left{width:190px;flex-shrink:0}
+@media(max-width:700px){.brew-layout{flex-direction:column}.brew-sidebar,.brew-left{width:100%;}}
+.live-ticker-card{background:white;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);position:sticky;top:70px}
+.live-ticker-title{font-size:11px;font-weight:600;color:#E05C5C;text-transform:uppercase;letter-spacing:.07em;padding:10px 12px 6px;display:flex;align-items:center;gap:6px}
+.live-ticker-empty{font-size:12px;color:#9CA3AF;padding:10px 12px 14px}
+.live-ticker-game{padding:8px 12px;border-top:1px solid #F3F4F6;font-size:11px}
+.live-ticker-teams{display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.live-ticker-team{flex:1;color:#374151;font-weight:500;display:flex;align-items:center;gap:4px}
+.live-ticker-score{font-weight:700;color:#111827;font-size:13px}
+.live-ticker-inning{color:#9CA3AF;font-size:10px}
+.team-logo{width:22px;height:22px;object-fit:contain;vertical-align:middle;flex-shrink:0}
+.team-logo-lg{width:28px;height:28px;object-fit:contain;vertical-align:middle;flex-shrink:0}
+.player-thumb{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#F3F4F6;border:1px solid #E5E7EB}
+.player-link{color:#374151;text-decoration:none;font-weight:500}
+.player-link:hover{color:#DA7756;text-decoration:underline}
+.bs-table td:first-child{display:flex;align-items:center;gap:6px}
+
+.standings-card{background:white;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:10px;position:sticky;top:70px}
+.standings-div-title{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;padding:8px 10px 4px;border-bottom:1px solid #F3F4F6}
+.standings-row{display:flex;align-items:center;gap:4px;padding:5px 10px;border-top:1px solid #F9FAFB;font-size:11px}
+.standings-row:first-of-type{border-top:none}
+.standings-row.my-team{background:#FEF9F0;font-weight:600}
+.standings-rank{color:#9CA3AF;width:12px;flex-shrink:0;text-align:center}
+.standings-logo{width:16px;height:16px;object-fit:contain;flex-shrink:0}
+.standings-name{flex:1;color:#374151;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.standings-w{color:#374151;font-weight:600;width:18px;text-align:right;flex-shrink:0}
+.standings-l{color:#9CA3AF;width:18px;text-align:right;flex-shrink:0}
+.standings-gb{color:#9CA3AF;width:22px;text-align:right;flex-shrink:0}
 </style>
 </head>
 <body>
@@ -237,10 +363,12 @@ button:hover{opacity:.85}
 
 <div id="app">
   <div id="header">
-    <div id="logo">Worklog <span id="version-badge">v6</span> <span id="sync-dot"></span></div>
+    <div id="logo">Worklog <span id="version-badge">v7</span> <span id="sync-dot"></span></div>
     <button class="tab-btn active" data-tab="objectives">Objectives</button>
     <button class="tab-btn" data-tab="analytics">Analytics</button>
     <button class="tab-btn" data-tab="calendar">Calendar</button>
+    <button class="tab-btn" data-tab="brewers">Brewers</button>
+    <button class="tab-btn" data-tab="recipes">Recipes</button>
     <div id="active-pill">
       <span id="active-dot"></span>
       <span id="active-name"></span>
@@ -290,6 +418,8 @@ button:hover{opacity:.85}
       </div>
       <div class="cal-events" id="cal-events"></div>
     </div>
+    <div id="brewers-tab"></div>
+    <div id="recipes-tab"></div>
   </div>
 </div>
 
@@ -366,7 +496,7 @@ function bootApp(cfg){
     if(data){
       S.objectives=data.objectives||[];S.sessions=data.sessions||[];S.cleared=data.cleared||[];
       S.activeObjId=data.activeObjId||null;S.activeSessId=data.activeSessId||null;
-      S.timeMode=data.timeMode||{};S.calendar=data.calendar||[];
+      S.timeMode=data.timeMode||{};S.calendar=data.calendar||[];S.recipes=data.recipes||[];
       renderObjectives();if(S.activeSessId){startTick();armCheckIn();}
     }
     setSyncDot('synced');
@@ -378,12 +508,12 @@ function pushData(){
   if(!db)return;clearTimeout(saveTimer);setSyncDot('syncing');
   saveTimer=setTimeout(function(){
     ignoreNext=true;
-    db.ref('worklog-v4').set({objectives:S.objectives,sessions:S.sessions,cleared:S.cleared,activeObjId:S.activeObjId||null,activeSessId:S.activeSessId||null,timeMode:S.timeMode||{},calendar:S.calendar||[]})
+    db.ref('worklog-v4').set({objectives:S.objectives,sessions:S.sessions,cleared:S.cleared,activeObjId:S.activeObjId||null,activeSessId:S.activeSessId||null,timeMode:S.timeMode||{},calendar:S.calendar||[],recipes:S.recipes||[]})
     .then(function(){setSyncDot('synced');}).catch(function(){ignoreNext=false;setSyncDot('error');});
   },400);
 }
 
-var S={objectives:[],sessions:[],cleared:[],calendar:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null};
+var S={objectives:[],sessions:[],cleared:[],calendar:[],recipes:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,renamingId:null,expandedRecipe:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null};
 
 function genId(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36);}
 var PAL=['#DA7756','#4A90D9','#5BA85A','#9B6DD4','#D4A017','#2AACBB','#D45B8A','#7A9E4E'];
@@ -403,7 +533,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function pad2(n){return n<10?'0'+n:''+n;}
 
 var tickInterval=null,checkInTimeout=null;
-function startTick(){clearInterval(tickInterval);tickInterval=setInterval(function(){S.tick++;updateHeader();updateTree();},1000);}
+function startTick(){clearInterval(tickInterval);tickInterval=setInterval(function(){S.tick++;updateHeader();if(!S.addingTo)updateTree();},1000);}
 function stopTick(){clearInterval(tickInterval);}
 function armCheckIn(){
   clearTimeout(checkInTimeout);if(!S.activeSessId||!S.activeObjId)return;
@@ -501,11 +631,21 @@ function makeColorPanel(obj,baseColor,kopen){
   return '<button class="kebab-item" data-ksec="color" data-id="'+obj.id+'"><span style="display:flex;align-items:center;gap:8px"><span style="width:12px;height:12px;border-radius:50%;background:'+baseColor+';display:inline-block"></span>Change color</span><span style="font-size:9px;color:#9CA3AF">'+(kopen&&S.kebabSection==='color'?'&#9650;':'&#9660;')+'</span></button>'+
     '<div class="kebab-panel'+(kopen&&S.kebabSection==='color'?' open':'')+'"><div class="color-grid">'+sw+'</div></div>';
 }
+function makeRenamePanel(obj,kopen){
+  var isOpen=kopen&&S.kebabSection==='rename';
+  return '<button class="kebab-item" data-ksec="rename" data-id="'+obj.id+'"><span>&#9998; Rename</span><span style="font-size:9px;color:#9CA3AF">'+(isOpen?'&#9650;':'&#9660;')+'</span></button>'+
+    '<div class="kebab-panel'+(isOpen?' open':'')+'">'+
+      '<input class="rename-input" id="ri-'+obj.id+'" value="'+esc(obj.text)+'" placeholder="New name..."/>'+
+      '<br/><button class="btn-rename-save" data-renameobj="'+obj.id+'">Save</button>'+
+    '</div>';
+}
 function makeKebab(obj,rootObj,baseColor){
   var kopen=S.openKebab===obj.id;
   return '<div class="kebab-wrap">'+
     '<button class="btn-kebab" data-id="'+obj.id+'">&vellip;</button>'+
     '<div class="kebab-menu'+(kopen?' open':'')+'" id="km-'+obj.id+'">'+
+      makeRenamePanel(obj,kopen)+
+      '<div class="kebab-divider"></div>'+
       makeTimerPanel(obj,rootObj,kopen)+
       '<div class="kebab-divider"></div>'+
       makeColorPanel(rootObj,baseColor,kopen)+
@@ -611,6 +751,7 @@ function bindTree(root){
   root.querySelectorAll('[data-rmcheck]').forEach(function(b){b.onclick=function(e){e.stopPropagation();S.objectives=S.objectives.map(function(o){return o.id===b.dataset.rmcheck?Object.assign({},o,{checkInMinutes:null}):o;});pushData();closeKebab();updateTree();};});
   root.querySelectorAll('.swatch').forEach(function(b){b.onclick=function(e){e.stopPropagation();S.objectives=S.objectives.map(function(o){return o.id===b.dataset.rootid?Object.assign({},o,{customColor:b.dataset.color}):o;});pushData();closeKebab();updateTree();};});
   root.querySelectorAll('[data-clearobj]').forEach(function(b){b.onclick=function(){clearObjective(b.dataset.clearobj);};});
+  root.querySelectorAll('[data-renameobj]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var id=b.dataset.renameobj,inp=document.getElementById('ri-'+id);if(!inp)return;var v=inp.value.trim();if(v&&v!==S.objectives.find(function(o){return o.id===id;}).text){S.objectives=S.objectives.map(function(o){return o.id===id?Object.assign({},o,{text:v}):o;});pushData();}closeKebab();updateTree();};});
 }
 
 function renderHistory(){
@@ -728,6 +869,522 @@ function addCalEvent(){
   titleEl.value='';timeEl.value='';pushData();renderCalendar();
 }
 
+
+// ── Brewers ───────────────────────────────────────────────────────────────────
+var BREWERS_ID=158;
+var brewExpandedPk=null;
+var brewBsTeam={};
+// MLB team ID -> ESPN abbreviation for logo URLs
+var ESPN_ABB={108:'laa',109:'ari',110:'bal',111:'bos',112:'chc',113:'cin',114:'cle',115:'col',116:'det',117:'hou',118:'kc',119:'lad',120:'wsh',121:'nym',133:'oak',134:'pit',135:'sd',136:'sea',137:'sf',138:'stl',139:'tb',140:'tex',141:'tor',142:'min',143:'phi',144:'atl',145:'chw',146:'mia',147:'nyy',158:'mil'};
+function teamLogoUrl(teamId){var a=ESPN_ABB[teamId];return a?'https://a.espncdn.com/i/teamlogos/mlb/500/'+a+'.png':'';}
+function playerPhotoUrl(playerId){return 'https://img.mlbstatic.com/mlb-photos/image/upload/d_people:generic:headshot:67:current.png/w_60,q_auto:best/v1/people/'+playerId+'/headshot/67/current';}
+function brUrl(fullName){
+  var parts=fullName.trim().split(' ');
+  var first=parts[0]||'';var last=parts[parts.length-1]||'';
+  var key=(last.slice(0,5)+first.slice(0,2)+'01').toLowerCase().replace(/[^a-z0-9]/g,'');
+  return 'https://www.baseball-reference.com/players/'+last[0].toLowerCase()+'/'+key+'.shtml';
+}
+
+function renderBrewers(){
+  var el=document.getElementById('brewers-tab');
+  el.innerHTML='<button class="brew-refresh" id="brew-refresh">&#8635; Refresh</button>'+
+    '<div class="brew-layout">'+
+      '<div class="brew-left" id="brew-standings"><p class="brew-loading">Loading standings...</p></div>'+
+      '<div class="brew-main" id="brew-content"><p class="brew-loading">Loading Brewers schedule...</p></div>'+
+      '<div class="brew-sidebar"><div class="live-ticker-card" id="live-ticker"><div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><p class="live-ticker-empty">Loading...</p></div></div>'+
+    '</div>';
+  document.getElementById('brew-refresh').onclick=function(){brewExpandedPk=null;renderBrewers();};
+  loadBrewers();
+  loadLiveTicker();
+  loadStandings();
+}
+function loadBrewers(){
+  var now=new Date();
+  var pad=function(n){return n<10?'0'+n:''+n;};
+  var today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+  var end=new Date(now); end.setDate(end.getDate()+14);
+  var endStr=end.getFullYear()+'-'+pad(end.getMonth()+1)+'-'+pad(end.getDate());
+  var past=new Date(now); past.setDate(past.getDate()-10);
+  var pastStr=past.getFullYear()+'-'+pad(past.getMonth()+1)+'-'+pad(past.getDate());
+  var schedUrl='https://statsapi.mlb.com/api/v1/schedule?sportId=1&teamId='+BREWERS_ID+'&startDate='+pastStr+'&endDate='+endStr+'&hydrate=linescore,team,venue';
+  fetch(schedUrl).then(function(r){return r.json();}).then(function(data){
+    var el=document.getElementById('brew-content');
+    if(!data.dates||!data.dates.length){el.innerHTML='<p class="brew-error">No games found.</p>';return;}
+    var todayMs=new Date(today+'T00:00:00').getTime();
+    var pastGames=[],upcoming=[],liveGame=null;
+    data.dates.forEach(function(d){
+      d.games.forEach(function(g){
+        var gDate=new Date(g.gameDate).getTime();
+        var status=g.status.abstractGameState;
+        if(status==='Live')liveGame=g;
+        else if(gDate<todayMs&&status==='Final')pastGames.push(g);
+        else if(status!=='Final')upcoming.push(g);
+      });
+    });
+    pastGames=pastGames.slice(-5).reverse();
+    upcoming=upcoming.slice(0,8);
+    var html='';
+    if(liveGame){
+      html+='<div class="brew-card" style="border-top:3px solid #E05C5C">'+
+        '<div class="brew-section-title" style="color:#E05C5C">&#9679; LIVE NOW</div>'+
+        brewGameHtml(liveGame,true)+'</div>';
+    }
+    if(upcoming.length){
+      html+='<div class="brew-card"><div class="brew-section-title">Upcoming Games</div>'+
+        upcoming.map(function(g){return brewGameHtml(g,false);}).join('')+'</div>';
+    }
+    if(pastGames.length){
+      html+='<div class="brew-card"><div class="brew-section-title">Recent Results</div>'+
+        pastGames.map(function(g){return brewGameHtml(g,false);}).join('')+'</div>';
+    }
+    el.innerHTML=html||'<p class="brew-error">No game data available.</p>';
+    // bind click handlers
+    el.querySelectorAll('[data-gamepk]').forEach(function(row){
+      row.onclick=function(e){
+        if(e.target.closest('.brew-detail'))return; // don't close when clicking inside detail
+        var pk=row.dataset.gamepk;
+        var detail=document.getElementById('bd-'+pk);
+        if(!detail)return;
+        var isOpen=detail.classList.contains('open');
+        el.querySelectorAll('.brew-detail').forEach(function(d){d.classList.remove('open');});
+        el.querySelectorAll('.brew-game').forEach(function(r){r.classList.remove('expanded');});
+        el.querySelectorAll('.brew-chevron').forEach(function(c){c.innerHTML='&#9660;';});
+        if(!isOpen){
+          detail.classList.add('open');
+          row.classList.add('expanded');
+          row.querySelector('.brew-chevron').innerHTML='&#9650;';
+          brewExpandedPk=pk;
+          if(!detail.dataset.loaded){
+            detail.dataset.loaded='1';
+            // default to Brewers side
+            var isHome=row.dataset.ishome==='1';
+            var defaultTeam=isHome?'home':'away';
+            loadGameDetail(pk,detail,defaultTeam);
+          }
+        } else {
+          brewExpandedPk=null;
+        }
+      };
+    });
+    // re-open previously expanded
+    if(brewExpandedPk){
+      var row=el.querySelector('[data-gamepk="'+brewExpandedPk+'"]');
+      if(row)row.click();
+    }
+  }).catch(function(){
+    document.getElementById('brew-content').innerHTML='<p class="brew-error">Could not load schedule. Check your connection.</p>';
+  });
+}
+function teamLogoImg(teamId,size){
+  var url=teamLogoUrl(teamId);
+  if(!url)return '';return '<img src="'+url+'" class="'+(size==='lg'?'team-logo-lg':'team-logo')+'" onerror="this.style.visibility=\'hidden\'"/>';
+}
+function brewGameHtml(g,live){
+  var home=g.teams.home,away=g.teams.away;
+  var status=g.status.abstractGameState;
+  var detailedState=g.status.detailedState;
+  var venue=g.venue?g.venue.name:'';
+  var gameDate=new Date(g.gameDate);
+  var dateStr=gameDate.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+  var timeStr=gameDate.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+  var hasScore=status==='Final'||live;
+  var scoreHtml=hasScore?
+    '<span class="brew-score">'+(away.score!=null?away.score:'-')+'</span>'+
+    '<span class="brew-vs">vs</span>'+
+    '<span class="brew-score">'+(home.score!=null?home.score:'-')+'</span>':
+    '<span class="brew-vs" style="font-size:13px">'+timeStr+'</span>';
+  var statusHtml=live?'<span class="brew-status brew-live">'+detailedState+'</span>':
+    status==='Final'?'<span class="brew-status">Final</span>':
+    '<span class="brew-status">'+dateStr+'</span>';
+  var canExpand=hasScore;
+  var isHome=home.team.id===BREWERS_ID;
+  return '<div class="brew-game'+(canExpand?'':' no-expand')+'" data-gamepk="'+g.gamePk+'" data-ishome="'+(isHome?'1':'0')+'">'+
+    '<div class="brew-game-header">'+
+      '<div style="flex:1;min-width:0">'+
+        '<div style="display:flex;align-items:center;gap:6px">'+
+          teamLogoImg(away.team.id,'lg')+
+          '<span class="brew-team" style="font-weight:'+(away.team.id===BREWERS_ID?'600':'400')+'">'+esc(away.team.abbreviation)+'</span>'+
+          scoreHtml+
+          '<span class="brew-team" style="text-align:right;font-weight:'+(home.team.id===BREWERS_ID?'600':'400')+'">'+esc(home.team.abbreviation)+'</span>'+
+          teamLogoImg(home.team.id,'lg')+
+          statusHtml+
+        '</div>'+
+        '<div class="brew-venue">'+esc(venue)+(status!=='Final'&&!live?' &bull; '+dateStr:'')+'</div>'+
+      '</div>'+
+      (canExpand?'<span class="brew-chevron" style="font-size:9px;color:#9CA3AF">&#9660;</span>':'')+
+    '</div>'+
+    (canExpand?'<div class="brew-detail" id="bd-'+g.gamePk+'"><p class="brew-detail-loading">Loading...</p></div>':'')+
+  '</div>';
+}
+function loadGameDetail(pk,detailEl,defaultTeam){
+  brewBsTeam[pk]=defaultTeam||'away';
+  Promise.all([
+    fetch('https://statsapi.mlb.com/api/v1/game/'+pk+'/linescore').then(function(r){return r.json();}),
+    fetch('https://statsapi.mlb.com/api/v1/game/'+pk+'/boxscore').then(function(r){return r.json();})
+  ]).then(function(results){
+    var ls=results[0],bs=results[1];
+    detailEl.innerHTML=renderLinescoreHtml(ls,bs,pk)+renderBoxscoreHtml(bs,pk,brewBsTeam[pk]);
+    detailEl.querySelectorAll('.bs-tab').forEach(function(tab){
+      tab.onclick=function(e){
+        e.stopPropagation(); // prevent toggling the game row
+        brewBsTeam[pk]=tab.dataset.bsteam;
+        detailEl.querySelectorAll('.bs-tab').forEach(function(t){t.classList.toggle('active',t===tab);});
+        var bsWrap=detailEl.querySelector('.bs-table-wrap');
+        if(bsWrap)bsWrap.outerHTML=renderBoxscoreTableHtml(bs,pk,tab.dataset.bsteam);
+      };
+    });
+  }).catch(function(){
+    detailEl.innerHTML='<p class="brew-detail-error">Could not load game details.</p>';
+  });
+}
+function renderLinescoreHtml(ls,bs,pk){
+  if(!ls||!ls.innings||!ls.innings.length)return '';
+  var innings=ls.innings;
+  var awayTeam=ls.teams&&ls.teams.away&&ls.teams.away.team?ls.teams.away.team:null;
+  var homeTeam=ls.teams&&ls.teams.home&&ls.teams.home.team?ls.teams.home.team:null;
+  var awayName=awayTeam?awayTeam.abbreviation:'Away';
+  var homeName=homeTeam?homeTeam.abbreviation:'Home';
+  var awayLogo=awayTeam?teamLogoImg(awayTeam.id,'sm'):'';
+  var homeLogo=homeTeam?teamLogoImg(homeTeam.id,'sm'):'';
+  var headers='<th>Team</th>'+innings.map(function(inn){return '<th>'+inn.num+'</th>';}).join('')+
+    '<th class="sep"></th><th>R</th><th>H</th><th>E</th>';
+  var awayRuns=innings.map(function(inn){return '<td>'+(inn.away&&inn.away.runs!=null?inn.away.runs:'x')+'</td>';}).join('');
+  var homeRuns=innings.map(function(inn){return '<td>'+(inn.home&&inn.home.runs!=null?inn.home.runs:'x')+'</td>';}).join('');
+  var awayTotals=ls.teams.away;var homeTotals=ls.teams.home;
+  return '<div class="linescore-wrap"><table class="linescore">'+
+    '<tr>'+headers+'</tr>'+
+    '<tr><td style="display:flex;align-items:center;gap:4px">'+awayLogo+awayName+'</td>'+awayRuns+'<td class="sep"></td>'+
+      '<td class="total">'+(awayTotals.runs!=null?awayTotals.runs:'-')+'</td>'+
+      '<td>'+(awayTotals.hits!=null?awayTotals.hits:'-')+'</td>'+
+      '<td>'+(awayTotals.errors!=null?awayTotals.errors:'-')+'</td>'+
+    '</tr>'+
+    '<tr><td style="display:flex;align-items:center;gap:4px">'+homeLogo+homeName+'</td>'+homeRuns+'<td class="sep"></td>'+
+      '<td class="total">'+(homeTotals.runs!=null?homeTotals.runs:'-')+'</td>'+
+      '<td>'+(homeTotals.hits!=null?homeTotals.hits:'-')+'</td>'+
+      '<td>'+(homeTotals.errors!=null?homeTotals.errors:'-')+'</td>'+
+    '</tr>'+
+  '</table></div>';
+}
+function renderBoxscoreHtml(bs,pk,activeTeam){
+  if(!bs||!bs.teams)return '';
+  var awayName=bs.teams.away&&bs.teams.away.team?bs.teams.away.team.abbreviation:'Away';
+  var homeName=bs.teams.home&&bs.teams.home.team?bs.teams.home.team.abbreviation:'Home';
+  return '<div class="boxscore-tabs">'+
+    '<button class="bs-tab'+(activeTeam==='away'?' active':'')+'" data-bsteam="away">'+awayName+'</button>'+
+    '<button class="bs-tab'+(activeTeam==='home'?' active':'')+'" data-bsteam="home">'+homeName+'</button>'+
+  '</div>'+
+  renderBoxscoreTableHtml(bs,pk,activeTeam);
+}
+function playerCell(p){
+  var pid=p.person.id;
+  var name=p.person.fullName;
+  var photo='<img src="'+playerPhotoUrl(pid)+'" class="player-thumb" onerror="this.style.visibility=\'hidden\'"/>';
+  var link='<a href="'+brUrl(name)+'" target="_blank" class="player-link">'+esc(name)+'</a>';
+  return photo+link;
+}
+function renderBoxscoreTableHtml(bs,pk,team){
+  if(!bs||!bs.teams||!bs.teams[team])return '<div class="bs-table-wrap"><p class="brew-detail-error">No data.</p></div>';
+  var td=bs.teams[team];
+  var batters=(td.batters||[]).map(function(id){return td.players['ID'+id];}).filter(Boolean);
+  var pitchers=(td.pitchers||[]).map(function(id){return td.players['ID'+id];}).filter(Boolean);
+  function cell(v){return v!=null?v:'-';}
+  var battingRows=batters.map(function(p){
+    var s=p.stats&&p.stats.batting?p.stats.batting:{};
+    var pos=p.position?p.position.abbreviation:'';
+    return '<tr><td>'+playerCell(p)+' <span style="color:#9CA3AF;font-size:10px">'+pos+'</span></td>'+
+      '<td>'+cell(s.atBats)+'</td><td>'+cell(s.runs)+'</td><td>'+cell(s.hits)+'</td>'+
+      '<td>'+cell(s.rbi)+'</td><td>'+cell(s.baseOnBalls)+'</td><td>'+cell(s.strikeOuts)+'</td>'+
+      '<td>'+cell(s.avg)+'</td></tr>';
+  }).join('');
+  var battingTotal=td.teamStats&&td.teamStats.batting?td.teamStats.batting:{};
+  var battingTotalRow='<tr class="totals-row"><td><span>Totals</span></td>'+
+    '<td>'+cell(battingTotal.atBats)+'</td><td>'+cell(battingTotal.runs)+'</td>'+
+    '<td>'+cell(battingTotal.hits)+'</td><td>'+cell(battingTotal.rbi)+'</td>'+
+    '<td>'+cell(battingTotal.baseOnBalls)+'</td><td>'+cell(battingTotal.strikeOuts)+'</td><td></td></tr>';
+  var pitchingRows=pitchers.map(function(p){
+    var s=p.stats&&p.stats.pitching?p.stats.pitching:{};
+    return '<tr><td>'+playerCell(p)+'</td>'+
+      '<td>'+cell(s.inningsPitched)+'</td><td>'+cell(s.hits)+'</td><td>'+cell(s.runs)+'</td>'+
+      '<td>'+cell(s.earnedRuns)+'</td><td>'+cell(s.baseOnBalls)+'</td><td>'+cell(s.strikeOuts)+'</td>'+
+      '<td>'+cell(s.era)+'</td></tr>';
+  }).join('');
+  var pitchingTotal=td.teamStats&&td.teamStats.pitching?td.teamStats.pitching:{};
+  var pitchingTotalRow='<tr class="totals-row"><td><span>Totals</span></td>'+
+    '<td>'+cell(pitchingTotal.inningsPitched)+'</td><td>'+cell(pitchingTotal.hits)+'</td>'+
+    '<td>'+cell(pitchingTotal.runs)+'</td><td>'+cell(pitchingTotal.earnedRuns)+'</td>'+
+    '<td>'+cell(pitchingTotal.baseOnBalls)+'</td><td>'+cell(pitchingTotal.strikeOuts)+'</td><td></td></tr>';
+  return '<div class="bs-table-wrap">'+
+    '<div class="bs-section-head">Batting</div>'+
+    '<table class="bs-table"><tr>'+
+      '<th style="text-align:left">Player</th><th>AB</th><th>R</th><th>H</th><th>RBI</th><th>BB</th><th>K</th><th>AVG</th>'+
+    '</tr>'+battingRows+battingTotalRow+'</table>'+
+    '<div class="bs-section-head" style="margin-top:12px">Pitching</div>'+
+    '<table class="bs-table"><tr>'+
+      '<th style="text-align:left">Player</th><th>IP</th><th>H</th><th>R</th><th>ER</th><th>BB</th><th>K</th><th>ERA</th>'+
+    '</tr>'+pitchingRows+pitchingTotalRow+'</table>'+
+  '</div>';
+}
+
+// ── Standings ─────────────────────────────────────────────────────────────────
+// Division order: NL Central first, then NL West, NL East, AL Central, AL West, AL East
+var DIV_ORDER=[205,203,204,202,200,201];
+var DIV_NAMES={200:'AL West',201:'AL East',202:'AL Central',203:'NL West',204:'NL East',205:'NL Central'};
+function loadStandings(){
+  var el=document.getElementById('brew-standings');
+  if(!el)return;
+  var yr=new Date().getFullYear();
+  fetch('https://statsapi.mlb.com/api/v1/standings?leagueId=103,104&season='+yr+'&standingsTypes=regularSeason&hydrate=team')
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var el=document.getElementById('brew-standings');
+      if(!el)return;
+      var byDiv={};
+      (data.records||[]).forEach(function(rec){
+        var divId=rec.division&&rec.division.id;
+        if(divId)byDiv[divId]=rec;
+      });
+      var html=DIV_ORDER.map(function(divId){
+        var rec=byDiv[divId];
+        if(!rec)return '';
+        var rows=(rec.teamRecords||[]).map(function(tr,i){
+          var team=tr.team;
+          var logo=teamLogoUrl(team.id);
+          var isBrew=team.id===BREWERS_ID;
+          var gb=tr.gamesBack==='0'?'-':tr.gamesBack;
+          return '<div class="standings-row'+(isBrew?' my-team':'')+'">'+
+            '<span class="standings-rank">'+(i+1)+'</span>'+
+            (logo?'<img src="'+logo+'" class="standings-logo"/>':'<span style="width:16px;display:inline-block"></span>')+
+            '<span class="standings-name">'+esc(team.teamName)+'</span>'+
+            '<span class="standings-w">'+(tr.wins!=null?tr.wins:'-')+'</span>'+
+            '<span class="standings-l">'+(tr.losses!=null?tr.losses:'-')+'</span>'+
+            '<span class="standings-gb">'+gb+'</span>'+
+          '</div>';
+        }).join('');
+        return '<div class="standings-card">'+
+          '<div class="standings-div-title">'+DIV_NAMES[divId]+'  <span style="float:right;font-weight:400;letter-spacing:0">W &nbsp; L &nbsp; GB</span></div>'+
+          rows+
+        '</div>';
+      }).join('');
+      el.innerHTML=html||'<p class="brew-error">No standings data.</p>';
+    }).catch(function(){
+      var el=document.getElementById('brew-standings');
+      if(el)el.innerHTML='<p class="brew-error">Could not load standings.</p>';
+    });
+}
+// ── Live ticker ───────────────────────────────────────────────────────────────
+var liveTickerInterval=null;
+function loadLiveTicker(){
+  clearInterval(liveTickerInterval);
+  fetchLiveTicker();
+  liveTickerInterval=setInterval(fetchLiveTicker,30000);
+}
+function fetchLiveTicker(){
+  var el=document.getElementById('live-ticker');
+  if(!el)return;
+  var now=new Date();
+  var pad=function(n){return n<10?'0'+n:''+n;};
+  var today=now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+  fetch('https://statsapi.mlb.com/api/v1/schedule?sportId=1&hydrate=linescore,team&date='+today)
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var el=document.getElementById('live-ticker');
+      if(!el)return;
+      var live=[];
+      (data.dates||[]).forEach(function(d){
+        d.games.forEach(function(g){
+          if(g.status.abstractGameState==='Live')live.push(g);
+        });
+      });
+      // sort by inning descending (later innings first)
+      live.sort(function(a,b){
+        var ai=a.linescore?a.linescore.currentInning||0:0;
+        var bi=b.linescore?b.linescore.currentInning||0:0;
+        return bi-ai;
+      });
+      live=live.slice(0,5);
+      if(!live.length){
+        el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block"></span>Live MLB</div><p class="live-ticker-empty">No live games</p>';
+        return;
+      }
+      var rows=live.map(function(g){
+        var away=g.teams.away,home=g.teams.home;
+        var ls=g.linescore||{};
+        var inn=ls.currentInning||'';
+        var topBot=ls.isTopInning?'▲':'▼';
+        var innStr=inn?(topBot+inn):'';
+        return '<div class="live-ticker-game">'+
+          '<div class="live-ticker-teams">'+
+            '<span class="live-ticker-team">'+
+              teamLogoImg(away.team.id,'sm')+
+              '<span style="font-weight:'+(away.team.id===BREWERS_ID?'700':'400')+'">'+esc(away.team.abbreviation)+'</span>'+
+            '</span>'+
+            '<span class="live-ticker-score">'+(away.score!=null?away.score:0)+'</span>'+
+          '</div>'+
+          '<div class="live-ticker-teams">'+
+            '<span class="live-ticker-team">'+
+              teamLogoImg(home.team.id,'sm')+
+              '<span style="font-weight:'+(home.team.id===BREWERS_ID?'700':'400')+'">'+esc(home.team.abbreviation)+'</span>'+
+            '</span>'+
+            '<span class="live-ticker-score">'+(home.score!=null?home.score:0)+'</span>'+
+          '</div>'+
+          '<div class="live-ticker-inning">'+innStr+'</div>'+
+        '</div>';
+      }).join('');
+      el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div>'+rows;
+    }).catch(function(){
+      var el=document.getElementById('live-ticker');
+      if(el)el.innerHTML='<div class="live-ticker-title">Live MLB</div><p class="live-ticker-empty">Unavailable</p>';
+    });
+}
+
+// ── Recipes ───────────────────────────────────────────────────────────────────
+function renderRecipes(){
+  var el=document.getElementById('recipes-tab');
+  var addRow='<div class="new-recipe-row" id="new-recipe-row" style="display:none;gap:8px;margin-bottom:12px">'+
+    '<input id="new-recipe-input" class="config-input" style="margin:0" placeholder="Recipe name..."/>'+
+    '<button class="btn-add-root" id="btn-confirm-recipe">Add</button>'+
+    '<button class="btn-cancel-root" id="btn-cancel-recipe">&#x2715;</button>'+
+  '</div>';
+  var list=S.recipes.map(function(r){return recipeCardHtml(r);}).join('');
+  el.innerHTML=addRow+
+    '<button id="btn-show-add-recipe">+ Add recipe</button>'+
+    '<div id="recipe-list" style="margin-top:14px">'+list+'</div>';
+  bindRecipes();
+}
+function recipeCardHtml(r){
+  var isOpen=S.expandedRecipe===r.id;
+  var stepCount=r.steps?r.steps.length:0;
+  var ingCount=r.ingredients?r.ingredients.length:0;
+  var meta=ingCount+' ingredient'+(ingCount!==1?'s':'')+' &bull; '+stepCount+' step'+(stepCount!==1?'s':'');
+  return '<div class="recipe-card" data-recipeid="'+r.id+'">'+
+    '<div class="recipe-header'+(isOpen?' open':'')+'" data-togglerecipe="'+r.id+'">'+
+      '<span class="recipe-title">'+esc(r.title)+'</span>'+
+      '<span class="recipe-meta">'+meta+'</span>'+
+      '<span class="recipe-chevron">'+(isOpen?'&#9650;':'&#9660;')+'</span>'+
+    '</div>'+
+    '<div class="recipe-body'+(isOpen?' open':'')+'">'+
+      recipeBodyHtml(r)+
+    '</div>'+
+  '</div>';
+}
+function recipeBodyHtml(r){
+  var ingrHtml=(r.ingredients||[]).map(function(ing){
+    return '<div class="ingredient-row">'+
+      '<span class="ingredient-dot"></span>'+
+      '<span class="ingredient-text">'+esc(ing.text)+'</span>'+
+      '<button class="btn-del-ingredient" data-recipeid="'+r.id+'" data-ingid="'+ing.id+'">&times;</button>'+
+    '</div>';
+  }).join('');
+  var stepsHtml=(r.steps||[]).map(function(st,i){
+    var badges='';
+    if(st.time)badges+='<span class="step-badge time">&#9201; '+esc(st.time)+'</span>';
+    if(st.temp)badges+='<span class="step-badge temp">&#127777; '+esc(st.temp)+'</span>';
+    return '<div class="step-row">'+
+      '<span class="step-num">'+(i+1)+'</span>'+
+      '<div class="step-content">'+
+        '<div class="step-text">'+esc(st.text)+'</div>'+
+        (badges?'<div class="step-badges">'+badges+'</div>':'')+
+      '</div>'+
+      '<button class="btn-del-step" data-recipeid="'+r.id+'" data-stepid="'+st.id+'">&times;</button>'+
+    '</div>';
+  }).join('');
+  return '<div class="recipe-section">'+
+    '<div class="recipe-section-title">Ingredients</div>'+
+    ingrHtml+
+    '<div class="recipe-add-row">'+
+      '<input class="recipe-add-input" id="ing-inp-'+r.id+'" placeholder="Add ingredient..."/>'+
+      '<button class="btn-recipe-add" data-addingr="'+r.id+'">Add</button>'+
+    '</div>'+
+  '</div>'+
+  '<div class="recipe-section">'+
+    '<div class="recipe-section-title">Steps</div>'+
+    stepsHtml+
+    '<div class="step-add-wrap">'+
+      '<input class="step-add-input" id="step-inp-'+r.id+'" placeholder="Add step..."/>'+
+      '<div class="step-badge-inputs">'+
+        '<div><span class="step-badge-label">&#9201; Time (optional)</span><input class="step-badge-input" id="step-time-'+r.id+'" placeholder="e.g. 25 min"/></div>'+
+        '<div><span class="step-badge-label">&#127777; Temp (optional)</span><input class="step-badge-input" id="step-temp-'+r.id+'" placeholder="e.g. 375°F"/></div>'+
+      '</div>'+
+      '<button class="btn-recipe-add" data-addstep="'+r.id+'">Add step</button>'+
+    '</div>'+
+  '</div>'+
+  '<div style="margin-top:10px;padding-top:10px;border-top:1px solid #F3F4F6">'+
+    '<button class="kebab-item danger" style="padding:6px 0;font-size:12px" data-delrecipe="'+r.id+'">&#x1F5D1; Delete recipe</button>'+
+  '</div>';
+}
+function bindRecipes(){
+  var el=document.getElementById('recipes-tab');
+  document.getElementById('btn-show-add-recipe').onclick=function(){
+    document.getElementById('new-recipe-row').style.display='flex';
+    this.style.display='none';
+    document.getElementById('new-recipe-input').focus();
+  };
+  document.getElementById('btn-confirm-recipe').onclick=addRecipe;
+  document.getElementById('btn-cancel-recipe').onclick=function(){
+    document.getElementById('new-recipe-row').style.display='none';
+    document.getElementById('btn-show-add-recipe').style.display='';
+  };
+  document.getElementById('new-recipe-input').onkeydown=function(e){if(e.key==='Enter')addRecipe();};
+  el.querySelectorAll('[data-togglerecipe]').forEach(function(b){b.onclick=function(){
+    S.expandedRecipe=S.expandedRecipe===b.dataset.togglerecipe?null:b.dataset.togglerecipe;
+    renderRecipes();
+  };});
+  el.querySelectorAll('[data-addingr]').forEach(function(b){b.onclick=function(){
+    var rid=b.dataset.addingr,inp=document.getElementById('ing-inp-'+rid);
+    var v=inp.value.trim();if(!v)return;
+    S.recipes=S.recipes.map(function(r){
+      if(r.id!==rid)return r;
+      var ings=(r.ingredients||[]).concat([{id:genId(),text:v}]);
+      return Object.assign({},r,{ingredients:ings});
+    });
+    inp.value='';pushData();renderRecipes();
+  };});
+  el.querySelectorAll('[data-addstep]').forEach(function(b){b.onclick=function(){
+    var rid=b.dataset.addstep;
+    var inp=document.getElementById('step-inp-'+rid);
+    var timeInp=document.getElementById('step-time-'+rid);
+    var tempInp=document.getElementById('step-temp-'+rid);
+    var v=inp.value.trim();if(!v)return;
+    S.recipes=S.recipes.map(function(r){
+      if(r.id!==rid)return r;
+      var steps=(r.steps||[]).concat([{id:genId(),text:v,time:timeInp.value.trim()||null,temp:tempInp.value.trim()||null}]);
+      return Object.assign({},r,{steps:steps});
+    });
+    inp.value='';timeInp.value='';tempInp.value='';pushData();renderRecipes();
+  };});
+  el.querySelectorAll('[data-delrecipe]').forEach(function(b){b.onclick=function(){
+    S.recipes=S.recipes.filter(function(r){return r.id!==b.dataset.delrecipe;});
+    if(S.expandedRecipe===b.dataset.delrecipe)S.expandedRecipe=null;
+    pushData();renderRecipes();
+  };});
+  el.querySelectorAll('[data-recipeid][data-ingid]').forEach(function(b){b.onclick=function(){
+    S.recipes=S.recipes.map(function(r){
+      if(r.id!==b.dataset.recipeid)return r;
+      return Object.assign({},r,{ingredients:(r.ingredients||[]).filter(function(i){return i.id!==b.dataset.ingid;})});
+    });
+    pushData();renderRecipes();
+  };});
+  el.querySelectorAll('[data-recipeid][data-stepid]').forEach(function(b){b.onclick=function(){
+    S.recipes=S.recipes.map(function(r){
+      if(r.id!==b.dataset.recipeid)return r;
+      return Object.assign({},r,{steps:(r.steps||[]).filter(function(s){return s.id!==b.dataset.stepid;})});
+    });
+    pushData();renderRecipes();
+  };});
+  // Enter key for ingredient/step inputs
+  el.querySelectorAll('.recipe-add-input').forEach(function(inp){inp.onkeydown=function(e){if(e.key==='Enter'){var rid=inp.id.slice(8);var btn=el.querySelector('[data-addingr="'+rid+'"]');if(btn)btn.click();}};});
+}
+function addRecipe(){
+  var inp=document.getElementById('new-recipe-input');
+  var v=inp.value.trim();if(!v)return;
+  S.recipes.push({id:genId(),title:v,ingredients:[],steps:[],createdAt:Date.now()});
+  S.expandedRecipe=S.recipes[S.recipes.length-1].id;
+  inp.value='';
+  document.getElementById('new-recipe-row').style.display='none';
+  document.getElementById('btn-show-add-recipe').style.display='';
+  pushData();renderRecipes();
+}
+
 function bindStaticEvents(){
   document.getElementById('active-stop').onclick=stopRecording;
   document.getElementById('btn-popup-yes').onclick=function(){stopRecording();document.getElementById('popup-overlay').classList.remove('show');};
@@ -740,8 +1397,12 @@ function bindStaticEvents(){
     document.getElementById('objectives-tab').classList.toggle('show',S.tab==='objectives');
     document.getElementById('analytics-tab').classList.toggle('show',S.tab==='analytics');
     document.getElementById('calendar-tab').classList.toggle('show',S.tab==='calendar');
+    document.getElementById('brewers-tab').classList.toggle('show',S.tab==='brewers');
+    document.getElementById('recipes-tab').classList.toggle('show',S.tab==='recipes');
     if(S.tab==='analytics')renderAnalytics();
     if(S.tab==='calendar')renderCalendar();
+    if(S.tab==='brewers')renderBrewers();else{clearInterval(liveTickerInterval);}
+    if(S.tab==='recipes')renderRecipes();
   };});
   document.querySelectorAll('.atab-btn').forEach(function(btn){btn.onclick=function(){S.aTab=btn.dataset.atab;document.querySelectorAll('.atab-btn').forEach(function(b){b.classList.toggle('active',b===btn);});renderAnalytics();};});
   document.getElementById('btn-show-add').onclick=function(){document.getElementById('add-root-row').style.display='flex';document.getElementById('btn-show-add').style.display='none';document.getElementById('new-root-input').value='';document.getElementById('new-root-input').focus();};
