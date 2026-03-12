@@ -1849,9 +1849,14 @@ function renderFantasySetup(el){
     msgEl.className='fantasy-msg info';msgEl.textContent='Testing connection...';
     var testUrl=proxy+'?leagueId='+leagueId+'&season='+season+'&view=mSettings';
     fetch(testUrl,{headers:{'x-espn-s2':s2,'x-swid':swid}})
-      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+      .then(function(r){
+        return r.json().then(function(data){
+          if(!r.ok){throw new Error(data&&data.error?data.error:'HTTP '+r.status);}
+          return data;
+        });
+      })
       .then(function(data){
-        if(!data||!data.settings){throw new Error('Unexpected response — check your league ID and cookies.');}
+        if(!data||(!data.settings&&!data.teams)){throw new Error('Unexpected response — check your league ID and cookies.');}
         espnCfg={leagueId:leagueId,season:season,proxyUrl:proxy,s2:s2,swid:swid};
         saveEspnConfig(espnCfg);
         msgEl.className='fantasy-msg success';msgEl.textContent='Connected! Loading your league...';
@@ -1864,7 +1869,10 @@ function renderFantasySetup(el){
 function espnFetch(view){
   var url=espnCfg.proxyUrl+'?leagueId='+espnCfg.leagueId+'&season='+espnCfg.season+'&view='+view;
   return fetch(url,{headers:{'x-espn-s2':espnCfg.s2,'x-swid':espnCfg.swid}}).then(function(r){
-    if(!r.ok)throw new Error('HTTP '+r.status);return r.json();
+    return r.json().then(function(data){
+      if(!r.ok){throw new Error(data&&data.error?data.error:'HTTP '+r.status);}
+      return data;
+    });
   });
 }
 
