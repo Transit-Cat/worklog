@@ -376,6 +376,69 @@ button:hover{opacity:.85}
 .cal-time-row span{font-size:12px;color:#9CA3AF;flex-shrink:0}
 .cal-event-obj-dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0;margin-right:2px}
 .cal-event-timerange{font-size:11px;color:#9CA3AF;flex-shrink:0}
+
+/* Fantasy tab */
+.fantasy-setup{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:24px;max-width:480px;margin:0 auto}
+.fantasy-setup h3{font-size:15px;font-weight:600;color:#111827;margin-bottom:6px}
+.fantasy-setup p{font-size:12px;color:#6B7280;line-height:1.6;margin-bottom:14px}
+.fantasy-setup .field-label{font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;display:block}
+.fantasy-setup input{width:100%;border:1.5px solid #E5E7EB;border-radius:8px;padding:9px 12px;font-size:13px;color:#374151;margin-bottom:10px}
+.fantasy-setup input:focus{border-color:#DA7756;outline:none;box-shadow:0 0 0 3px #DA775614}
+.fantasy-setup .steps{background:#F9FAFB;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:#6B7280;line-height:1.9}
+.fantasy-setup .steps b{color:#374151}
+.fantasy-setup .steps code{background:#E5E7EB;border-radius:3px;padding:1px 5px;font-family:monospace;font-size:11px}
+.btn-fantasy-connect{background:#DA7756;color:white;border:none;border-radius:8px;padding:10px 24px;font-size:13px;font-weight:600;width:100%;margin-top:4px}
+.btn-fantasy-connect:hover{background:#c9654a}
+.fantasy-msg{font-size:12px;margin-top:8px;padding:7px 10px;border-radius:6px;display:none}
+.fantasy-msg.error{background:#FEF2F2;color:#DC2626;display:block}
+.fantasy-msg.info{background:#EFF6FF;color:#2563EB;display:block}
+.fantasy-msg.success{background:#F0FDF4;color:#16A34A;display:block}
+
+/* Fantasy main layout */
+.fantasy-layout{display:flex;gap:14px;align-items:flex-start}
+.fantasy-main{flex:1;min-width:0}
+.fantasy-side{width:200px;flex-shrink:0}
+@media(max-width:650px){.fantasy-layout{flex-direction:column}.fantasy-side{width:100%}}
+
+/* Matchup card */
+.fantasy-card{background:white;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:12px}
+.fantasy-card-title{font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;padding:10px 14px 6px;border-bottom:1px solid #F3F4F6;display:flex;align-items:center;justify-content:space-between}
+.matchup-teams{display:flex;flex-direction:column;gap:0}
+.matchup-team-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-top:1px solid #F9FAFB}
+.matchup-team-row:first-of-type{border-top:none}
+.matchup-team-row.my-team{background:#FFFBF5}
+.matchup-team-name{flex:1;font-size:13px;font-weight:500;color:#374151}
+.matchup-team-score{font-size:18px;font-weight:700;color:#111827}
+.matchup-team-score.winning{color:#16A34A}
+.matchup-result{font-size:11px;color:#9CA3AF;padding:6px 14px 10px;text-align:center}
+
+/* Standings side */
+.fantasy-stand-row{display:flex;align-items:center;gap:6px;padding:5px 12px;border-top:1px solid #F9FAFB;font-size:11px}
+.fantasy-stand-row.my-team{background:#FFFBF5;font-weight:600}
+.fstand-rank{color:#9CA3AF;width:14px;flex-shrink:0;text-align:center}
+.fstand-name{flex:1;color:#374151;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fstand-rec{color:#9CA3AF;flex-shrink:0}
+
+/* Roster */
+.roster-table{width:100%;border-collapse:collapse;font-size:12px}
+.roster-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #F3F4F6}
+.roster-table td{padding:6px 10px;border-top:1px solid #F9FAFB;color:#374151;vertical-align:middle}
+.roster-table tr:hover td{background:#FAFAFA}
+.roster-pos{font-size:10px;color:#9CA3AF;font-weight:600;width:32px}
+.roster-proj{color:#9CA3AF;font-size:11px}
+.roster-inj{font-size:9px;padding:1px 5px;border-radius:4px;font-weight:600;margin-left:4px;white-space:nowrap}
+.roster-inj.DTD{background:#FEF9C3;color:#92400E}
+.roster-inj.O{background:#FEE2E2;color:#991B1B}
+.roster-inj.Q{background:#FEF3C7;color:#92400E}
+
+/* Refresh btn */
+.fantasy-refresh{background:none;border:none;color:#9CA3AF;font-size:18px;padding:2px 8px;float:right;cursor:pointer}
+.fantasy-refresh:hover{color:#374151}
+
+/* Brewers sub-tabs */
+.brew-subtab-bar{display:flex;gap:0;margin-bottom:14px;background:#F3F4F6;border-radius:8px;padding:3px}
+.brew-subtab{flex:1;padding:6px 0;text-align:center;font-size:12px;font-weight:500;color:#6B7280;border:none;background:none;border-radius:6px;cursor:pointer}
+.brew-subtab.active{background:white;color:#111827;box-shadow:0 1px 3px rgba(0,0,0,.08)}
 </style>
 </head>
 <body>
@@ -418,7 +481,7 @@ button:hover{opacity:.85}
 
 <div id="app">
   <div id="header">
-    <div id="logo">Worklog <span id="version-badge">v9</span> <span id="sync-dot"></span></div>
+    <div id="logo">Worklog <span id="version-badge">v10b</span> <span id="sync-dot"></span></div>
     <button class="tab-btn active" data-tab="objectives">Objectives</button>
     <button class="tab-btn" data-tab="analytics">Analytics</button>
     <button class="tab-btn" data-tab="calendar">Calendar</button>
@@ -570,7 +633,7 @@ function pushData(){
 }
 
 var dragSrcId=null;
-var S={objectives:[],sessions:[],cleared:[],calendar:[],recipes:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,renamingId:null,expandedRecipe:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null,autoTrackEvents:{},calAddMode:'plain'};
+var S={objectives:[],sessions:[],cleared:[],calendar:[],recipes:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,renamingId:null,expandedRecipe:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null,autoTrackEvents:{},calAddMode:'plain',brewSubTab:'schedule'};
 
 function genId(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36);}
 var PAL=['#DA7756','#4A90D9','#5BA85A','#9B6DD4','#D4A017','#2AACBB','#D45B8A','#7A9E4E'];
@@ -1176,16 +1239,38 @@ function brUrl(fullName){
 
 function renderBrewers(){
   var el=document.getElementById('brewers-tab');
-  el.innerHTML='<button class="brew-refresh" id="brew-refresh">&#8635; Refresh</button>'+
-    '<div class="brew-layout">'+
-      '<div class="brew-left" id="brew-standings"><p class="brew-loading">Loading standings...</p></div>'+
-      '<div class="brew-main" id="brew-content"><p class="brew-loading">Loading Brewers schedule...</p></div>'+
-      '<div class="brew-sidebar"><div class="live-ticker-card" id="live-ticker"><div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><p class="live-ticker-empty">Loading...</p></div></div>'+
-    '</div>';
-  document.getElementById('brew-refresh').onclick=function(){brewExpandedPk=null;renderBrewers();};
-  loadBrewers();
-  loadLiveTicker();
-  loadStandings();
+  el.innerHTML=
+    '<div class="brew-subtab-bar">'+
+      '<button class="brew-subtab'+(S.brewSubTab==='schedule'?' active':'')+'" data-brewtab="schedule">&#9918; Schedule</button>'+
+      '<button class="brew-subtab'+(S.brewSubTab==='fantasy'?' active':'')+'" data-brewtab="fantasy">&#9883; Fantasy</button>'+
+    '</div>'+
+    '<div id="brew-subtab-content"></div>';
+  el.querySelectorAll('[data-brewtab]').forEach(function(btn){
+    btn.onclick=function(){
+      S.brewSubTab=btn.dataset.brewtab;
+      el.querySelectorAll('[data-brewtab]').forEach(function(b){b.classList.toggle('active',b===btn);});
+      renderBrewSubTab();
+    };
+  });
+  renderBrewSubTab();
+}
+function renderBrewSubTab(){
+  var el=document.getElementById('brew-subtab-content');
+  if(!el)return;
+  if(S.brewSubTab==='fantasy'){
+    renderFantasy(el);
+  } else {
+    el.innerHTML='<button class="brew-refresh" id="brew-refresh">&#8635; Refresh</button>'+
+      '<div class="brew-layout">'+
+        '<div class="brew-left" id="brew-standings"><p class="brew-loading">Loading standings...</p></div>'+
+        '<div class="brew-main" id="brew-content"><p class="brew-loading">Loading Brewers schedule...</p></div>'+
+        '<div class="brew-sidebar"><div class="live-ticker-card" id="live-ticker"><div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><p class="live-ticker-empty">Loading...</p></div></div>'+
+      '</div>';
+    document.getElementById('brew-refresh').onclick=function(){brewExpandedPk=null;renderBrewSubTab();};
+    loadBrewers();
+    loadLiveTicker();
+    loadStandings();
+  }
 }
 function loadBrewers(){
   var now=new Date();
@@ -1705,6 +1790,227 @@ function addRecipe(){
   pushData();renderRecipes();
 }
 
+
+// ── Fantasy ───────────────────────────────────────────────────────────────────
+var ESPN_CFG_KEY='worklog-espn-config-v1';
+var espnCfg=null;
+var fantasyCache={};
+
+function getEspnConfig(){try{var r=localStorage.getItem(ESPN_CFG_KEY);return r?JSON.parse(r):null;}catch(e){return null;}}
+function saveEspnConfig(c){try{localStorage.setItem(ESPN_CFG_KEY,JSON.stringify(c));}catch(e){}}
+
+function renderFantasy(el){
+  if(!el)el=document.getElementById('brew-subtab-content');
+  espnCfg=getEspnConfig();
+  if(!espnCfg||!espnCfg.leagueId||!espnCfg.proxyUrl){
+    renderFantasySetup(el);
+  } else {
+    renderFantasyMain(el);
+  }
+}
+
+function renderFantasySetup(el){
+  el.innerHTML='<div class="fantasy-setup">'+
+    '<h3>&#9883; ESPN Fantasy Baseball</h3>'+
+    '<p>Connect your ESPN fantasy league. We use a small Cloudflare Worker as a proxy to handle authentication — it takes about 2 minutes to set up and is completely free.</p>'+
+    '<div class="steps">'+
+      '<b>Step 1 — Deploy the proxy</b><br>'+
+      '1. Go to <b>workers.cloudflare.com</b> and create a free account<br>'+
+      '2. Click <b>Create Worker</b>, paste the code from the <b>espn-proxy.js</b> file provided<br>'+
+      '3. Click <b>Deploy</b> — copy the worker URL (ends in <code>.workers.dev</code>)<br><br>'+
+      '<b>Step 2 — Get your ESPN cookies</b><br>'+
+      '1. Log in to <b>fantasy.espn.com</b> in your browser<br>'+
+      '2. Open DevTools (<code>F12</code>) → Application → Cookies → <code>fantasy.espn.com</code><br>'+
+      '3. Copy the values for <code>espn_s2</code> and <code>SWID</code><br><br>'+
+      '<b>Step 3 — Enter details below</b>'+
+    '</div>'+
+    '<label class="field-label">Cloudflare Worker URL</label>'+
+    '<input id="cfg-proxy" placeholder="https://your-worker.workers.dev" autocomplete="off"/>'+
+    '<label class="field-label">ESPN League ID</label>'+
+    '<input id="cfg-league" placeholder="e.g. 12345678" type="number" autocomplete="off"/>'+
+    '<label class="field-label">Season Year</label>'+
+    '<input id="cfg-season" placeholder="'+new Date().getFullYear()+'" type="number" value="'+new Date().getFullYear()+'" autocomplete="off"/>'+
+    '<label class="field-label">espn_s2 cookie</label>'+
+    '<input id="cfg-s2" placeholder="Paste espn_s2 value..." autocomplete="off"/>'+
+    '<label class="field-label">SWID cookie</label>'+
+    '<input id="cfg-swid" placeholder="Paste SWID value (include curly braces)..." autocomplete="off"/>'+
+    '<button class="btn-fantasy-connect" id="btn-fantasy-connect">Connect</button>'+
+    '<div class="fantasy-msg" id="fantasy-setup-msg"></div>'+
+  '</div>';
+  document.getElementById('btn-fantasy-connect').onclick=function(){
+    var proxy=document.getElementById('cfg-proxy').value.trim();
+    var leagueId=document.getElementById('cfg-league').value.trim();
+    var season=document.getElementById('cfg-season').value.trim()||new Date().getFullYear();
+    var s2=document.getElementById('cfg-s2').value.trim();
+    var swid=document.getElementById('cfg-swid').value.trim();
+    var msgEl=document.getElementById('fantasy-setup-msg');
+    if(!proxy||!leagueId||!s2||!swid){msgEl.className='fantasy-msg error';msgEl.textContent='All fields are required.';return;}
+    if(proxy.indexOf('workers.dev')<0&&proxy.indexOf('http')<0){msgEl.className='fantasy-msg error';msgEl.textContent='Worker URL should start with https://';return;}
+    msgEl.className='fantasy-msg info';msgEl.textContent='Testing connection...';
+    var testUrl=proxy+'?leagueId='+leagueId+'&season='+season+'&view=mSettings';
+    fetch(testUrl,{headers:{'x-espn-s2':s2,'x-swid':swid}})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+      .then(function(data){
+        if(!data||!data.settings){throw new Error('Unexpected response — check your league ID and cookies.');}
+        espnCfg={leagueId:leagueId,season:season,proxyUrl:proxy,s2:s2,swid:swid};
+        saveEspnConfig(espnCfg);
+        msgEl.className='fantasy-msg success';msgEl.textContent='Connected! Loading your league...';
+        setTimeout(function(){renderFantasyMain(document.getElementById('brew-subtab-content'));},800);
+      })
+      .catch(function(err){msgEl.className='fantasy-msg error';msgEl.textContent='Connection failed: '+err.message;});
+  };
+}
+
+function espnFetch(view){
+  var url=espnCfg.proxyUrl+'?leagueId='+espnCfg.leagueId+'&season='+espnCfg.season+'&view='+view;
+  return fetch(url,{headers:{'x-espn-s2':espnCfg.s2,'x-swid':espnCfg.swid}}).then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);return r.json();
+  });
+}
+
+function renderFantasyMain(el){
+  el.innerHTML='<button class="fantasy-refresh" id="fantasy-refresh" title="Refresh">&#8635;</button>'+
+    '<div class="fantasy-layout">'+
+      '<div class="fantasy-main" id="fantasy-main-col">'+
+        '<div class="fantasy-card"><div class="fantasy-card-title">Loading league...</div></div>'+
+      '</div>'+
+      '<div class="fantasy-side" id="fantasy-side-col">'+
+        '<div class="fantasy-card"><div class="fantasy-card-title">Standings</div><p style="padding:10px 14px;font-size:12px;color:#D1D5DB">Loading...</p></div>'+
+      '</div>'+
+    '</div>';
+  var rfBtn=document.getElementById('fantasy-refresh');if(rfBtn)rfBtn.onclick=function(){fantasyCache={};renderFantasyMain(el);};
+  loadFantasyData();
+}
+
+function loadFantasyData(){
+  // Fetch team + matchup + roster in parallel
+  Promise.all([
+    espnFetch('mTeam'),
+    espnFetch('mMatchup'),
+    espnFetch('mRoster')
+  ]).then(function(results){
+    var teamData=results[0],matchupData=results[1],rosterData=results[2];
+    renderFantasyContent(teamData,matchupData,rosterData);
+  }).catch(function(err){
+    var mc=document.getElementById('fantasy-main-col');
+    if(mc)mc.innerHTML='<div class="fantasy-card"><div class="fantasy-card-title" style="color:#DC2626">Error</div><p style="padding:14px;font-size:12px;color:#6B7280">'+err.message+'<br><br><button onclick="saveEspnConfig(null);espnCfg=null;renderBrewers()" style="color:#DA7756;background:none;border:none;font-size:12px;cursor:pointer;padding:0">Reset connection</button></p></div>';
+  });
+}
+
+function renderFantasyContent(teamData,matchupData,rosterData){
+  var mc=document.getElementById('fantasy-main-col');
+  var sc=document.getElementById('fantasy-side-col');
+  if(!mc||!sc)return;
+
+  var teams=(teamData.teams||[]);
+  var members=(teamData.members||[]);
+  var myTeamId=findMyTeam(teams,members);
+
+  // ── Standings ────────────────────────────────────────────────────────────
+  var sorted=teams.slice().sort(function(a,b){
+    var aw=(a.record&&a.record.overall)?a.record.overall.wins:0;
+    var bw=(b.record&&b.record.overall)?b.record.overall.wins:0;
+    return bw-aw;
+  });
+  var standHtml=sorted.map(function(t,i){
+    var isMine=t.id===myTeamId;
+    var name=teamName(t);
+    var rec=t.record&&t.record.overall?t.record.overall.wins+'-'+t.record.overall.losses:'—';
+    return '<div class="fantasy-stand-row'+(isMine?' my-team':'')+'">'+
+      '<span class="fstand-rank">'+(i+1)+'</span>'+
+      '<span class="fstand-name">'+(isMine?'&#9654; ':'')+esc(name)+'</span>'+
+      '<span class="fstand-rec">'+rec+'</span>'+
+    '</div>';
+  }).join('');
+  sc.innerHTML='<div class="fantasy-card"><div class="fantasy-card-title">Standings</div>'+standHtml+'</div>';
+
+  // ── Current matchup ────────────────────────────────────────────────────────
+  var scoringPeriod=teamData.scoringPeriodId||1;
+  var matchups=matchupData.schedule||[];
+  var myMatchup=null;
+  matchups.forEach(function(m){
+    if(m.matchupPeriodId!==scoringPeriod)return;
+    if((m.home&&m.home.teamId===myTeamId)||(m.away&&m.away.teamId===myTeamId))myMatchup=m;
+  });
+
+  var matchupHtml='<p style="padding:14px;font-size:12px;color:#D1D5DB">No active matchup found.</p>';
+  if(myMatchup){
+    var homeTeam=teams.find(function(t){return t.id===(myMatchup.home&&myMatchup.home.teamId);});
+    var awayTeam=teams.find(function(t){return t.id===(myMatchup.away&&myMatchup.away.teamId);});
+    var homeScore=myMatchup.home&&myMatchup.home.totalPoints!=null?myMatchup.home.totalPoints.toFixed(2):'-';
+    var awayScore=myMatchup.away&&myMatchup.away.totalPoints!=null?myMatchup.away.totalPoints.toFixed(2):'-';
+    var homeWin=parseFloat(homeScore)>parseFloat(awayScore);
+    var awayWin=parseFloat(awayScore)>parseFloat(homeScore);
+    var homeRow=function(){
+      var isMine=homeTeam&&homeTeam.id===myTeamId;
+      return '<div class="matchup-team-row'+(isMine?' my-team':'')+'">'+
+        '<span class="matchup-team-name">'+esc(homeTeam?teamName(homeTeam):'Home')+'</span>'+
+        '<span class="matchup-team-score'+(homeWin?' winning':'')+'">'+homeScore+'</span>'+
+      '</div>';
+    };
+    var awayRow=function(){
+      var isMine=awayTeam&&awayTeam.id===myTeamId;
+      return '<div class="matchup-team-row'+(isMine?' my-team':'')+'">'+
+        '<span class="matchup-team-name">'+esc(awayTeam?teamName(awayTeam):'Away')+'</span>'+
+        '<span class="matchup-team-score'+(awayWin?' winning':'')+'">'+awayScore+'</span>'+
+      '</div>';
+    };
+    matchupHtml='<div class="matchup-teams">'+awayRow()+homeRow()+'</div>'+
+      '<div class="matchup-result">Week '+scoringPeriod+'</div>';
+  }
+
+  // ── Roster ────────────────────────────────────────────────────────────────
+  var myTeam=rosterData.teams&&rosterData.teams.find(function(t){return t.id===myTeamId;});
+  var entries=myTeam&&myTeam.roster&&myTeam.roster.entries||[];
+  var POS={0:'C',1:'1B',2:'2B',3:'3B',4:'SS',5:'LF',6:'CF',7:'RF',8:'OF',9:'DH',10:'SP',11:'RP',12:'P',13:'Util',14:'Bench',15:'IL',16:'IL+',17:'BE'};
+  var rosterRows=entries.map(function(e){
+    var pInfo=e.playerPoolEntry&&e.playerPoolEntry.player;
+    var name=pInfo&&pInfo.fullName?pInfo.fullName:'Unknown';
+    var inj=e.playerPoolEntry&&e.playerPoolEntry.injuryStatus;
+    var injBadge=inj&&inj!=='ACTIVE'&&inj!=='NORMAL'?'<span class="roster-inj '+inj+'">'+inj+'</span>':'';
+    var pos=POS[e.lineupSlotId]||'?';
+    var proj=e.playerPoolEntry&&e.playerPoolEntry.appliedStatTotal!=null?parseFloat(e.playerPoolEntry.appliedStatTotal).toFixed(1):'';
+    var isBench=e.lineupSlotId===16||e.lineupSlotId===17||e.lineupSlotId===15;
+    var trHtml='<tr'+(isBench?' style="opacity:.7"':'')+'>'+
+      '<td class="roster-pos">'+pos+'</td>'+
+      '<td><a href="https://www.baseball-reference.com/players/'+name[0].toLowerCase()+'/'+brUrlKey(name)+'.shtml" target="_blank" class="player-link">'+esc(name)+'</a>'+injBadge+'</td>'+
+      '<td class="roster-proj">'+proj+'</td>'+
+    '</tr>';
+    return {sortKey:isBench?1:0,html:trHtml};
+  }).sort(function(a,b){return a.sortKey-b.sortKey;});
+
+  mc.innerHTML=
+    '<div class="fantasy-card"><div class="fantasy-card-title">Current Matchup — Week '+scoringPeriod+
+      '<button onclick="saveEspnConfig(null);espnCfg=null;renderBrewers()" style="font-size:10px;color:#9CA3AF;background:none;border:none;cursor:pointer;font-weight:400">Disconnect</button>'+
+    '</div>'+matchupHtml+'</div>'+
+    '<div class="fantasy-card"><div class="fantasy-card-title">My Roster</div>'+
+      '<table class="roster-table"><tr><th>Pos</th><th>Player</th><th>Proj</th></tr>'+
+      rosterRows.map(function(r){return r.html;}).join('')+
+    '</table></div>';
+}
+
+function teamName(t){
+  if(!t)return 'Unknown';
+  var loc=t.location||'';var nick=t.nickname||'';
+  return (loc+' '+nick).trim()||('Team '+t.id);
+}
+function findMyTeam(teams,members){
+  // Try to match by espn_s2 prefix or just return first — user can't log in without their team
+  // We'll try to find the team the logged-in user owns
+  if(!teams||!teams.length)return null;
+  // ESPN puts owner info in members; cross-reference with team owners
+  if(members&&members.length){
+    var memberId=members[0]&&members[0].id;
+    var owned=teams.find(function(t){return t.owners&&t.owners.indexOf(memberId)>=0;});
+    if(owned)return owned.id;
+  }
+  return teams[0].id;
+}
+function brUrlKey(fullName){
+  var parts=fullName.trim().split(' ');
+  var first=parts[0]||'';var last=parts[parts.length-1]||'';
+  return (last.slice(0,5)+first.slice(0,2)+'01').toLowerCase().replace(/[^a-z0-9]/g,'');
+}
 function bindStaticEvents(){
   document.getElementById('active-stop').onclick=stopRecording;
   document.getElementById('btn-popup-yes').onclick=function(){stopRecording();document.getElementById('popup-overlay').classList.remove('show');};
