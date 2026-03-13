@@ -95,7 +95,7 @@ button:hover{opacity:.85}
 .btn-record.active .inner{border-radius:2px;background:white}
 .btn-kebab{background:none;border:none;color:#9CA3AF;font-size:18px;padding:3px 7px;line-height:1}
 .kebab-wrap{position:relative;flex-shrink:0}
-.kebab-menu{position:absolute;right:0;top:calc(100% + 4px);z-index:100;background:white;border:1px solid #E5E7EB;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);min-width:200px;overflow:hidden;display:none}
+.kebab-menu{position:absolute;right:0;top:calc(100% + 4px);z-index:100;background:white;border:1px solid #E5E7EB;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.10);min-width:200px;overflow:visible;display:none}
 .kebab-menu.open{display:block}
 .kebab-item{width:100%;padding:11px 14px;background:none;border:none;text-align:left;font-size:13px;color:#374151;display:flex;justify-content:space-between;align-items:center}
 .kebab-item.danger{color:#E05C5C}
@@ -481,7 +481,7 @@ button:hover{opacity:.85}
 
 <div id="app">
   <div id="header">
-    <div id="logo">Worklog <span id="version-badge">v10b</span> <span id="sync-dot"></span></div>
+    <div id="logo">Worklog <span id="version-badge">v10c</span> <span id="sync-dot"></span></div>
     <button class="tab-btn active" data-tab="objectives">Objectives</button>
     <button class="tab-btn" data-tab="analytics">Analytics</button>
     <button class="tab-btn" data-tab="calendar">Calendar</button>
@@ -653,7 +653,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function pad2(n){return n<10?'0'+n:''+n;}
 
 var tickInterval=null,checkInTimeout=null;
-function startTick(){clearInterval(tickInterval);tickInterval=setInterval(function(){S.tick++;updateHeader();if(!S.addingTo)updateTree();},1000);}
+function startTick(){clearInterval(tickInterval);tickInterval=setInterval(function(){S.tick++;updateHeader();if(!S.addingTo&&!S.openKebab)updateTree();},1000);}
 function stopTick(){clearInterval(tickInterval);}
 function armCheckIn(){
   clearTimeout(checkInTimeout);if(!S.activeSessId||!S.activeObjId)return;
@@ -803,9 +803,9 @@ function makeKebab(obj,rootObj,baseColor){
 function makeTimeSpan(obj,baseColor,isRec){
   var isTodayMode=S.timeMode[obj.id]==='today';
   var timeMs=isTodayMode?getTime(obj.id,todayStartMs()):getTime(obj.id);
-  var timeStr=fmtMs(timeMs);if(!timeStr)return '';
-  return '<span class="obj-time'+(isTodayMode?' today-mode':'')+'" data-toggletime="'+obj.id+'" style="color:'+(isRec?baseColor:'#9CA3AF')+'" title="Click: toggle today/total">'+
-    (isTodayMode?'Today: ':'')+timeStr+(isRec?'<span style="margin-left:3px;font-size:8px">&#9679;</span>':'')+
+  var timeStr=fmtMs(timeMs)||(isTodayMode?'0m today':'—');
+  return '<span class="obj-time'+(isTodayMode?' today-mode':'')+'" data-toggletime="'+obj.id+'" style="color:'+(timeMs>0||isRec?isRec?baseColor:'#6B7280':'#9CA3AF')+'" title="Click: toggle today/total">'+
+    (isTodayMode?'&#9788; ':'')+timeStr+(isRec?'<span style="margin-left:3px;font-size:8px">&#9679;</span>':'')+
   '</span>';
 }
 function makeAddChildRow(objId,baseColor,indent){
@@ -901,8 +901,9 @@ function bindTree(root){
   root.querySelectorAll('[data-rmcheck]').forEach(function(b){b.onclick=function(e){e.stopPropagation();S.objectives=S.objectives.map(function(o){return o.id===b.dataset.rmcheck?Object.assign({},o,{checkInMinutes:null}):o;});pushData();closeKebab();updateTree();};});
   root.querySelectorAll('.swatch').forEach(function(b){b.onclick=function(e){e.stopPropagation();S.objectives=S.objectives.map(function(o){return o.id===b.dataset.rootid?Object.assign({},o,{customColor:b.dataset.color}):o;});pushData();closeKebab();updateTree();};});
   root.querySelectorAll('[data-clearobj]').forEach(function(b){b.onclick=function(){clearObjective(b.dataset.clearobj);};});
-  root.querySelectorAll('[data-renameobj]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var id=b.dataset.renameobj,inp=document.getElementById('ri-'+id);if(!inp)return;var v=inp.value.trim();if(v){S.objectives=S.objectives.map(function(o){return o.id===id?Object.assign({},o,{text:v}):o;});pushData();}closeKebab();updateTree();};});
-  root.querySelectorAll('[data-noteobj]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var id=b.dataset.noteobj,ta=document.getElementById('nt-'+id);if(!ta)return;var v=ta.value.trim();S.objectives=S.objectives.map(function(o){return o.id===id?Object.assign({},o,{note:v||null}):o;});pushData();closeKebab();updateTree();};});
+  root.querySelectorAll('[data-renameobj]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var id=b.dataset.renameobj;var panel=b.closest('.kebab-panel');var inp=panel?panel.querySelector('.rename-input'):document.getElementById('ri-'+id);var v=inp?inp.value.trim():'';if(v&&v!==((S.objectives.find(function(o){return o.id===id;})||{}).text||'')){S.objectives=S.objectives.map(function(o){return o.id===id?Object.assign({},o,{text:v}):o;});}pushData();S.openKebab=null;S.kebabSection=null;updateTree();};});
+  root.querySelectorAll('.rename-input').forEach(function(inp){inp.onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();var btn=inp.closest('.kebab-panel').querySelector('[data-renameobj]');if(btn)btn.click();}};});
+  root.querySelectorAll('[data-noteobj]').forEach(function(b){b.onclick=function(e){e.stopPropagation();var id=b.dataset.noteobj;var panel=b.closest('.kebab-panel');var ta=panel?panel.querySelector('.note-textarea'):document.getElementById('nt-'+id);var v=ta?ta.value.trim():'';S.objectives=S.objectives.map(function(o){return o.id===id?Object.assign({},o,{note:v||null}):o;});pushData();S.openKebab=null;S.kebabSection=null;updateTree();};});
   root.querySelectorAll('[data-moveup]').forEach(function(b){b.onclick=function(e){e.stopPropagation();moveObjective(b.dataset.moveup,'up');};});
   root.querySelectorAll('[data-movedown]').forEach(function(b){b.onclick=function(e){e.stopPropagation();moveObjective(b.dataset.movedown,'down');};});
   root.querySelectorAll('[data-promote]').forEach(function(b){b.onclick=function(e){e.stopPropagation();moveObjective(b.dataset.promote,'promote');};});
@@ -2003,14 +2004,29 @@ function teamName(t){
   return (loc+' '+nick).trim()||('Team '+t.id);
 }
 function findMyTeam(teams,members){
-  // Try to match by espn_s2 prefix or just return first — user can't log in without their team
-  // We'll try to find the team the logged-in user owns
   if(!teams||!teams.length)return null;
-  // ESPN puts owner info in members; cross-reference with team owners
+  // SWID is the user's ESPN member ID (strip curly braces if present)
+  var swid=(espnCfg.swid||'').replace(/[{}]/g,'').toUpperCase();
+  if(swid){
+    // Match directly against team owners array
+    var bySwid=teams.find(function(t){
+      return t.owners&&t.owners.some(function(o){return o.replace(/[{}]/g,'').toUpperCase()===swid;});
+    });
+    if(bySwid)return bySwid.id;
+    // Also try matching against members list then cross-ref
+    if(members&&members.length){
+      var me=members.find(function(m){return m.id&&m.id.replace(/[{}]/g,'').toUpperCase()===swid;});
+      if(me){
+        var owned=teams.find(function(t){return t.owners&&t.owners.indexOf(me.id)>=0;});
+        if(owned)return owned.id;
+      }
+    }
+  }
+  // Fallback: first team in members list
   if(members&&members.length){
     var memberId=members[0]&&members[0].id;
-    var owned=teams.find(function(t){return t.owners&&t.owners.indexOf(memberId)>=0;});
-    if(owned)return owned.id;
+    var fallback=teams.find(function(t){return t.owners&&t.owners.indexOf(memberId)>=0;});
+    if(fallback)return fallback.id;
   }
   return teams[0].id;
 }
