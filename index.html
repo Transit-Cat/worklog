@@ -203,7 +203,7 @@ button:hover{opacity:.85}
 
 /* Brewers tab */
 .brew-section-title{font-size:13px;font-weight:600;color:#374151;margin-bottom:10px}
-.brew-card{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:10px}
+.brew-card{background:white;border:1px solid #E5E7EB;border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-bottom:10px;min-width:0;overflow-x:auto}
 .brew-game{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid #F3F4F6}
 .brew-game:first-of-type{border-top:none;padding-top:0}
 .brew-team{flex:1;font-size:13px;color:#374151}
@@ -263,11 +263,20 @@ button:hover{opacity:.85}
 .brew-game:hover{background:#F9FAFB}
 .brew-game.expanded{background:#F9FAFB}
 .brew-game-header{display:flex;align-items:center;gap:10px;padding:10px 0}
-.brew-detail{border-top:1px solid #F3F4F6;padding:12px 0 4px;display:none}
+.brew-detail{border-top:1px solid #F3F4F6;padding:12px 0 4px;display:none;overflow-x:auto}
+.detail-matchup-header{display:flex;align-items:center;justify-content:space-between;padding:10px 0 14px;gap:8px}
+.detail-team{display:flex;align-items:center;gap:6px}
+.detail-team.home{flex-direction:row-reverse}
+.detail-abbr{font-size:15px;font-weight:600;color:#374151}
+.detail-logo{width:44px;height:44px;object-fit:contain;flex-shrink:0}
+.detail-abbr.detail-brewers{color:#0A3161}
+.detail-score-block{display:flex;flex-direction:column;align-items:center;gap:2px}
+.detail-score{font-size:22px;font-weight:700;color:#111827;letter-spacing:-.5px}
+.detail-inning{font-size:11px;color:#E05C5C;font-weight:600}
 .brew-detail.open{display:block}
 .brew-detail-loading{font-size:12px;color:#9CA3AF;padding:8px 0}
 .brew-detail-error{font-size:12px;color:#E05C5C;padding:8px 0}
-.linescore-wrap{overflow-x:auto;margin-bottom:12px}
+.linescore-wrap{overflow-x:auto;margin-bottom:12px;max-width:100%}
 .linescore{border-collapse:collapse;width:100%;min-width:360px;font-size:11px}
 .linescore th{padding:4px 6px;color:#9CA3AF;font-weight:500;text-align:center;border-bottom:1px solid #F3F4F6}
 .linescore th:first-child{text-align:left;min-width:50px}
@@ -279,7 +288,7 @@ button:hover{opacity:.85}
 .boxscore-tabs{display:flex;gap:4px;margin-bottom:10px}
 .bs-tab{background:none;border:1px solid #E5E7EB;border-radius:6px;padding:4px 12px;font-size:11px;color:#6B7280}
 .bs-tab.active{background:#374151;color:white;border-color:#374151}
-.bs-table-wrap{overflow-x:auto}
+.bs-table-wrap{overflow-x:auto;max-width:100%}
 .bs-table{border-collapse:collapse;width:100%;font-size:11px;min-width:300px}
 .bs-table th{padding:4px 8px;color:#9CA3AF;font-weight:500;border-bottom:1px solid #F3F4F6;text-align:right;white-space:nowrap}
 .bs-table th:first-child{text-align:left}
@@ -292,18 +301,19 @@ button:hover{opacity:.85}
 /* Brewers layout */
 .brew-layout{display:flex;gap:14px;align-items:flex-start}
 .brew-main{flex:1;min-width:0}
-.brew-sidebar{width:190px;flex-shrink:0}
-.brew-left{width:190px;flex-shrink:0}
-@media(max-width:700px){.brew-layout{flex-direction:column}.brew-sidebar,.brew-left{width:100%;}}
-.live-ticker-card{background:white;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);position:sticky;top:70px}
-.live-ticker-title{font-size:11px;font-weight:600;color:#E05C5C;text-transform:uppercase;letter-spacing:.07em;padding:10px 12px 6px;display:flex;align-items:center;gap:6px}
-.live-ticker-empty{font-size:12px;color:#9CA3AF;padding:10px 12px 14px}
-.live-ticker-game{padding:8px 12px;border-top:1px solid #F3F4F6;font-size:11px}
-.live-ticker-teams{display:flex;align-items:center;gap:6px;margin-bottom:2px}
-.live-ticker-team{flex:1;color:#374151;font-weight:500;display:flex;align-items:center;gap:4px}
+.brew-sidebar{display:none}
+.brew-left{width:200px;flex-shrink:0}
+@media(max-width:700px){.brew-layout{flex-direction:column}.brew-left{width:100%;}}
+.live-ticker-card{background:white;border:1px solid #E5E7EB;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);margin-top:14px;display:flex;align-items:stretch}
+.live-ticker-title{font-size:11px;font-weight:600;color:#E05C5C;text-transform:uppercase;letter-spacing:.07em;padding:8px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #F3F4F6;flex-shrink:0}
+.live-ticker-empty{font-size:12px;color:#9CA3AF;padding:10px 14px}
+.live-ticker-inner{display:flex;align-items:stretch;overflow-x:auto;gap:0}
+.live-ticker-game{padding:10px 16px;border-left:1px solid #F3F4F6;font-size:11px;flex-shrink:0;min-width:130px}
+.live-ticker-teams{display:flex;flex-direction:column;gap:3px}
+.live-ticker-team{color:#374151;font-weight:500;display:flex;align-items:center;justify-content:space-between;gap:8px;white-space:nowrap}
 .live-ticker-score{font-weight:700;color:#111827;font-size:13px}
-.live-ticker-inning{color:#9CA3AF;font-size:10px}
-.team-logo{width:22px;height:22px;object-fit:contain;vertical-align:middle;flex-shrink:0}
+.live-ticker-inning{color:#9CA3AF;font-size:10px;margin-top:4px}
+.team-logo{width:16px;height:16px;object-fit:contain;vertical-align:middle;flex-shrink:0}
 .team-logo-lg{width:28px;height:28px;object-fit:contain;vertical-align:middle;flex-shrink:0}
 .player-thumb{width:26px;height:26px;border-radius:50%;object-fit:cover;flex-shrink:0;background:#F3F4F6;border:1px solid #E5E7EB}
 .player-link{color:#374151;text-decoration:none;font-weight:500}
@@ -420,16 +430,34 @@ button:hover{opacity:.85}
 .fstand-rec{color:#9CA3AF;flex-shrink:0}
 
 /* Roster */
-.roster-table{width:100%;border-collapse:collapse;font-size:12px}
-.roster-table th{text-align:left;padding:6px 10px;font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #F3F4F6}
-.roster-table td{padding:6px 10px;border-top:1px solid #F9FAFB;color:#374151;vertical-align:middle}
+.roster-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:auto}
+.roster-table th{text-align:center;padding:5px 6px;font-size:10px;font-weight:600;color:#9CA3AF;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #F3F4F6;white-space:nowrap}
+.roster-table th.th-left{text-align:left}
+.roster-table td{padding:5px 6px;border-top:1px solid #F9FAFB;color:#374151;vertical-align:middle;text-align:center;white-space:nowrap}
+.roster-table td.td-left{text-align:left}
 .roster-table tr:hover td{background:#FAFAFA}
-.roster-pos{font-size:10px;color:#9CA3AF;font-weight:600;width:32px}
-.roster-proj{color:#9CA3AF;font-size:11px}
+.roster-table tr.bench-row td{opacity:.65}
+..roster-group-header th{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:6px 4px 2px;border-bottom:none}
+.rgh-research{color:#6B7280;text-align:center}
+.rgh-proj{color:#1D4ED8;text-align:center;border-left:1px solid #E5E7EB;border-right:1px solid #E5E7EB}
+.rgh-pts{color:#059669;text-align:center}
+.roster-tot{font-weight:600}
+.roster-section-header td{background:#F9FAFB;font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;padding:6px 10px;text-align:left !important;border-top:2px solid #F3F4F6}
+.roster-pos{font-size:11px;color:#6B7280;font-weight:700;width:36px;text-align:left}
+.roster-player-cell{display:flex;align-items:center;gap:8px;min-width:160px}
+.roster-headshot{width:32px;height:32px;border-radius:50%;object-fit:cover;object-position:top center;background:#F3F4F6;flex-shrink:0}
+.roster-player-info{}
+.roster-player-name{font-size:12px;font-weight:500;color:#111827}
+.roster-player-meta{font-size:10px;color:#9CA3AF;margin-top:1px}
+.roster-stat{font-size:12px;color:#374151;min-width:28px}
+.roster-stat.pos-val{color:#16A34A;font-weight:600}
+.roster-stat.neg-val{color:#DC2626;font-weight:600}
+.roster-pct{font-size:11px;color:#6B7280}
 .roster-inj{font-size:9px;padding:1px 5px;border-radius:4px;font-weight:600;margin-left:4px;white-space:nowrap}
 .roster-inj.DTD{background:#FEF9C3;color:#92400E}
 .roster-inj.O{background:#FEE2E2;color:#991B1B}
 .roster-inj.Q{background:#FEF3C7;color:#92400E}
+.roster-card{overflow-x:auto}
 
 /* Refresh btn */
 .fantasy-refresh{background:none;border:none;color:#9CA3AF;font-size:18px;padding:2px 8px;float:right;cursor:pointer}
@@ -481,7 +509,7 @@ button:hover{opacity:.85}
 
 <div id="app">
   <div id="header">
-    <div id="logo">Worklog <span id="version-badge">v10c</span> <span id="sync-dot"></span></div>
+    <div id="logo">Worklog <span id="version-badge">v10d</span> <span id="sync-dot"></span></div>
     <button class="tab-btn active" data-tab="objectives">Objectives</button>
     <button class="tab-btn" data-tab="analytics">Analytics</button>
     <button class="tab-btn" data-tab="calendar">Calendar</button>
@@ -602,7 +630,7 @@ document.getElementById('btn-connect').addEventListener('click',function(){
     if(done)return;done=true;clearTimeout(t);try{app.delete();}catch(e){}
     document.getElementById('btn-connect').disabled=false;setMsg('error','Could not read from database: '+err.message+'. Make sure Realtime Database is enabled in test mode.');
   });
-});
+});;
 
 var db=null,saveTimer=null,ignoreNext=false;
 function bootApp(cfg){
@@ -710,7 +738,19 @@ function popupSave(){
 
 function updateHeader(){
   var pill=document.getElementById('active-pill');
-  if(S.activeObjId){var obj=S.objectives.find(function(o){return o.id===S.activeObjId;});if(obj){document.getElementById('active-name').textContent=obj.text;var t=fmtMs(getTime(S.activeObjId));var tel=document.getElementById('active-time');tel.textContent=t;tel.style.display=t?'':'none';pill.classList.add('show');return;}}
+  if(S.activeObjId&&S.activeSessId){
+    var obj=S.objectives.find(function(o){return o.id===S.activeObjId;});
+    var sess=S.sessions.find(function(s){return s.id===S.activeSessId;});
+    if(obj&&sess){
+      document.getElementById('active-name').textContent=obj.text;
+      var elapsed=Date.now()-sess.start;
+      var tel=document.getElementById('active-time');
+      tel.textContent=fmtMs(elapsed);
+      tel.style.display='';
+      pill.classList.add('show');
+      return;
+    }
+  }
   pill.classList.remove('show');
 }
 
@@ -1265,8 +1305,8 @@ function renderBrewSubTab(){
       '<div class="brew-layout">'+
         '<div class="brew-left" id="brew-standings"><p class="brew-loading">Loading standings...</p></div>'+
         '<div class="brew-main" id="brew-content"><p class="brew-loading">Loading Brewers schedule...</p></div>'+
-        '<div class="brew-sidebar"><div class="live-ticker-card" id="live-ticker"><div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><p class="live-ticker-empty">Loading...</p></div></div>'+
-      '</div>';
+      '</div>'+
+      '<div class="live-ticker-card" id="live-ticker"><div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><p class="live-ticker-empty">Loading...</p></div>';
     document.getElementById('brew-refresh').onclick=function(){brewExpandedPk=null;renderBrewSubTab();};
     loadBrewers();
     loadLiveTicker();
@@ -1322,12 +1362,13 @@ function loadBrewers(){
         if(!detail)return;
         var isOpen=detail.classList.contains('open');
         el.querySelectorAll('.brew-detail').forEach(function(d){d.classList.remove('open');});
-        el.querySelectorAll('.brew-game').forEach(function(r){r.classList.remove('expanded');});
+        el.querySelectorAll('.brew-game').forEach(function(r){r.classList.remove('expanded');r.querySelector('.brew-game-header').style.display='';});
         el.querySelectorAll('.brew-chevron').forEach(function(c){c.innerHTML='&#9660;';});
         if(!isOpen){
           detail.classList.add('open');
           row.classList.add('expanded');
           row.querySelector('.brew-chevron').innerHTML='&#9650;';
+          row.querySelector('.brew-game-header').style.display='none';
           brewExpandedPk=pk;
           if(!detail.dataset.loaded){
             detail.dataset.loaded='1';
@@ -1415,8 +1456,10 @@ function loadGameDetail(pk,detailEl,defaultTeam){
 function renderLinescoreHtml(ls,bs,pk){
   if(!ls||!ls.innings||!ls.innings.length)return '';
   var innings=ls.innings;
-  var awayTeam=ls.teams&&ls.teams.away&&ls.teams.away.team?ls.teams.away.team:null;
-  var homeTeam=ls.teams&&ls.teams.home&&ls.teams.home.team?ls.teams.home.team:null;
+  var awayTeam=ls.teams&&ls.teams.away&&ls.teams.away.team?ls.teams.away.team:
+            (bs&&bs.teams&&bs.teams.away&&bs.teams.away.team?bs.teams.away.team:null);
+  var homeTeam=ls.teams&&ls.teams.home&&ls.teams.home.team?ls.teams.home.team:
+            (bs&&bs.teams&&bs.teams.home&&bs.teams.home.team?bs.teams.home.team:null);
   var awayName=awayTeam?awayTeam.abbreviation:'Away';
   var homeName=homeTeam?homeTeam.abbreviation:'Home';
   var awayLogo=awayTeam?teamLogoImg(awayTeam.id,'sm'):'';
@@ -1426,7 +1469,27 @@ function renderLinescoreHtml(ls,bs,pk){
   var awayRuns=innings.map(function(inn){return '<td>'+(inn.away&&inn.away.runs!=null?inn.away.runs:'x')+'</td>';}).join('');
   var homeRuns=innings.map(function(inn){return '<td>'+(inn.home&&inn.home.runs!=null?inn.home.runs:'x')+'</td>';}).join('');
   var awayTotals=ls.teams.away;var homeTotals=ls.teams.home;
-  return '<div class="linescore-wrap"><table class="linescore">'+
+  var awayScore=ls.teams.away.runs!=null?ls.teams.away.runs:'-';
+  var homeScore=ls.teams.home.runs!=null?ls.teams.home.runs:'-';
+  var currentInning=ls.currentInning||'';
+  var topBot=ls.isTopInning?'&#9650;':'&#9660;';
+  var innStr=currentInning?(topBot+currentInning):'';
+  var gameState=ls.currentInningOrdinal||'';
+  var matchupHeader='<div class="detail-matchup-header">'+
+    '<div class="detail-team away">'+
+      (awayTeam?'<img src="'+teamLogoUrl(awayTeam.id)+'" class="detail-logo" onerror="this.style.visibility=&quot;hidden&quot;"/>':'')+
+      '<span class="detail-abbr'+(awayTeam&&awayTeam.id===BREWERS_ID?' detail-brewers':'')+'">'+(awayName||'Away')+'</span>'+
+    '</div>'+
+    '<div class="detail-score-block">'+
+      '<span class="detail-score">'+(awayScore+' – '+homeScore)+'</span>'+
+      (innStr?'<span class="detail-inning">'+innStr+' '+gameState+'</span>':'<span class="detail-inning">Final</span>')+
+    '</div>'+
+    '<div class="detail-team home">'+
+      '<span class="detail-abbr'+(homeTeam&&homeTeam.id===BREWERS_ID?' detail-brewers':'')+'">'+(homeName||'Home')+'</span>'+
+      (homeTeam?'<img src="'+teamLogoUrl(homeTeam.id)+'" class="detail-logo" onerror="this.style.visibility=&quot;hidden&quot;"/>':'')+
+    '</div>'+
+  '</div>';
+  return matchupHeader+'<div class="linescore-wrap"><table class="linescore">'+
     '<tr>'+headers+'</tr>'+
     '<tr><td style="display:flex;align-items:center;gap:4px">'+awayLogo+awayName+'</td>'+awayRuns+'<td class="sep"></td>'+
       '<td class="total">'+(awayTotals.runs!=null?awayTotals.runs:'-')+'</td>'+
@@ -1578,7 +1641,7 @@ function fetchLiveTicker(){
       });
       live=live.slice(0,5);
       if(!live.length){
-        el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block"></span>Live MLB</div><p class="live-ticker-empty">No live games</p>';
+        el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block"></span>Live MLB</div><p class="live-ticker-empty">No live games right now</p>';
         return;
       }
       var rows=live.map(function(g){
@@ -1589,23 +1652,21 @@ function fetchLiveTicker(){
         var innStr=inn?(topBot+inn):'';
         return '<div class="live-ticker-game">'+
           '<div class="live-ticker-teams">'+
-            '<span class="live-ticker-team">'+
+            '<div class="live-ticker-team">'+
               teamLogoImg(away.team.id,'sm')+
               '<span style="font-weight:'+(away.team.id===BREWERS_ID?'700':'400')+'">'+esc(away.team.abbreviation)+'</span>'+
-            '</span>'+
-            '<span class="live-ticker-score">'+(away.score!=null?away.score:0)+'</span>'+
-          '</div>'+
-          '<div class="live-ticker-teams">'+
-            '<span class="live-ticker-team">'+
+              '<span class="live-ticker-score">'+(away.score!=null?away.score:0)+'</span>'+
+            '</div>'+
+            '<div class="live-ticker-team" style="margin-top:3px">'+
               teamLogoImg(home.team.id,'sm')+
               '<span style="font-weight:'+(home.team.id===BREWERS_ID?'700':'400')+'">'+esc(home.team.abbreviation)+'</span>'+
-            '</span>'+
-            '<span class="live-ticker-score">'+(home.score!=null?home.score:0)+'</span>'+
+              '<span class="live-ticker-score">'+(home.score!=null?home.score:0)+'</span>'+
+            '</div>'+
           '</div>'+
           '<div class="live-ticker-inning">'+innStr+'</div>'+
         '</div>';
       }).join('');
-      el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div>'+rows;
+      el.innerHTML='<div class="live-ticker-title"><span style="width:6px;height:6px;border-radius:50%;background:#E05C5C;display:inline-block;animation:pulse 1.5s infinite"></span>Live MLB</div><div class="live-ticker-inner">'+rows+'</div>';
     }).catch(function(){
       var el=document.getElementById('live-ticker');
       if(el)el.innerHTML='<div class="live-ticker-title">Live MLB</div><p class="live-ticker-empty">Unavailable</p>';
@@ -1971,37 +2032,177 @@ function renderFantasyContent(teamData,matchupData,rosterData){
   // ── Roster ────────────────────────────────────────────────────────────────
   var myTeam=rosterData.teams&&rosterData.teams.find(function(t){return t.id===myTeamId;});
   var entries=myTeam&&myTeam.roster&&myTeam.roster.entries||[];
-  var POS={0:'C',1:'1B',2:'2B',3:'3B',4:'SS',5:'LF',6:'CF',7:'RF',8:'OF',9:'DH',10:'SP',11:'RP',12:'P',13:'Util',14:'Bench',15:'IL',16:'IL+',17:'BE'};
-  var rosterRows=entries.map(function(e){
+
+  // Lineup slot → label
+  var SLOT={0:'C',1:'1B',2:'2B',3:'3B',4:'SS',5:'LF',6:'CF',7:'RF',8:'OF',9:'DH',
+            10:'SP',11:'RP',12:'P',13:'Util',14:'Bench',15:'IL',16:'IL+',17:'BE'};
+  // Is this slot a pitcher slot?
+  var PITCHER_SLOTS={10:true,11:true,12:true};
+  // IL/bench slots
+  var INACTIVE_SLOTS={14:true,15:true,16:true,17:true};
+
+  // ESPN stat IDs for batters and pitchers
+  var BATTER_STATS=[
+    {id:'0',  label:'R'},
+    {id:'7',  label:'TB'},
+    {id:'6',  label:'RBI'},
+    {id:'11', label:'BB'},
+    {id:'13', label:'K'},
+    {id:'20', label:'SB'}
+  ];
+  var PITCHER_STATS=[
+    {id:'56', label:'IP'},
+    {id:'37', label:'H'},
+    {id:'39', label:'ER'},
+    {id:'40', label:'BB'},
+    {id:'41', label:'K'},
+    {id:'48', label:'W'},
+    {id:'49', label:'L'},
+    {id:'53', label:'SV'},
+    {id:'57', label:'HD'}
+  ];
+
+  function getStatVal(stats,id){
+    if(!stats)return '--';
+    var v=stats[id];
+    if(v==null||v===undefined)return '--';
+    var f=parseFloat(v);
+    if(isNaN(f))return '--';
+    if(id==='2'||id==='17')return f.toFixed(3).replace(/^0/,'');
+    if(id==='47')return f.toFixed(2);
+    if(id==='45')return f.toFixed(2);
+    if(id==='56')return f.toFixed(1);
+    return Math.round(f);
+  }
+
+  // Extract stats: prefer projected (statSourceId=1), get fantasy pts
+  function extractStats(statsArr){
+    var projMap={},anyMap={},tot='--',avg='--';
+    if(!statsArr||!statsArr.length)return {proj:{},tot:tot,avg:avg};
+    statsArr.forEach(function(s){
+      if(s.stats)Object.assign(anyMap,s.stats);
+      if(s.statSourceId===1&&s.stats)Object.assign(projMap,s.stats);
+      if(tot==='--'&&s.appliedTotal!=null&&s.statSplitTypeId===0){
+        tot=Math.round(s.appliedTotal);
+        avg=s.appliedAverage!=null?parseFloat(s.appliedAverage).toFixed(1):'--';
+      }
+    });
+    return {proj:Object.keys(projMap).length?projMap:anyMap,tot:tot,avg:avg};
+  }
+
+  function playerRow(e,statDefs,isBench){
     var pInfo=e.playerPoolEntry&&e.playerPoolEntry.player;
-    var name=pInfo&&pInfo.fullName?pInfo.fullName:'Unknown';
-    var inj=e.playerPoolEntry&&e.playerPoolEntry.injuryStatus;
-    var injBadge=inj&&inj!=='ACTIVE'&&inj!=='NORMAL'?'<span class="roster-inj '+inj+'">'+inj+'</span>':'';
-    var pos=POS[e.lineupSlotId]||'?';
-    var proj=e.playerPoolEntry&&e.playerPoolEntry.appliedStatTotal!=null?parseFloat(e.playerPoolEntry.appliedStatTotal).toFixed(1):'';
-    var isBench=e.lineupSlotId===16||e.lineupSlotId===17||e.lineupSlotId===15;
-    var trHtml='<tr'+(isBench?' style="opacity:.7"':'')+'>'+
-      '<td class="roster-pos">'+pos+'</td>'+
-      '<td><a href="https://www.baseball-reference.com/players/'+name[0].toLowerCase()+'/'+brUrlKey(name)+'.shtml" target="_blank" class="player-link">'+esc(name)+'</a>'+injBadge+'</td>'+
-      '<td class="roster-proj">'+proj+'</td>'+
+    var ppe=e.playerPoolEntry||{};
+    var name=pInfo&&pInfo.fullName?pInfo.fullName:'Empty';
+    var isEmpty=!pInfo;
+    var playerId=pInfo&&pInfo.id;
+    var teamAbbr=pInfo&&pInfo.proTeamId?proTeamAbbr(pInfo.proTeamId):'';
+    var posAbbr=pInfo&&pInfo.defaultPositionId?defaultPos(pInfo.defaultPositionId):'';
+    var inj=ppe.injuryStatus;
+    var injBadge=(!isEmpty&&inj&&inj!=='ACTIVE'&&inj!=='NORMAL')?'<span class="roster-inj '+inj+'">'+inj+'</span>':'';
+    var pctRost=ppe.percentOwned!=null?parseFloat(ppe.percentOwned).toFixed(1)+'%':'--';
+    var plusMinus=ppe.percentChange!=null?parseFloat(ppe.percentChange).toFixed(1):'';
+    var pmClass=plusMinus&&parseFloat(plusMinus)>0?'pos-val':plusMinus&&parseFloat(plusMinus)<0?'neg-val':'';
+    var pmStr=plusMinus?(parseFloat(plusMinus)>0?'+':'')+plusMinus:'--';
+    var photoUrl=playerId?'https://a.espncdn.com/combiner/i?img=/i/headshots/mlb/players/full/'+playerId+'.png&w=64&h=64&scale=crop&cb=1':'https://a.espncdn.com/i/headshots/nophoto.png';
+    var statsArr=e.playerPoolEntry&&e.playerPoolEntry.stats;
+    var extracted=extractStats(statsArr);
+    var statCells=statDefs.map(function(sd){
+      return '<td class="roster-stat">'+(isEmpty?'--':getStatVal(extracted.proj,sd.id))+'</td>';
+    }).join('');
+    var slotLabel=SLOT[e.lineupSlotId]||'?';
+    return '<tr class="'+(isBench?'bench-row':'')+'">'+
+      '<td class="roster-pos td-left">'+slotLabel+'</td>'+
+      '<td class="td-left"><div class="roster-player-cell">'+
+        '<img class="roster-headshot" src="'+photoUrl+'" onerror="this.src=&quot;https://a.espncdn.com/i/headshots/nophoto.png&quot;" loading="lazy"/>'+
+        '<div class="roster-player-info">'+
+          (isEmpty?'<span class="roster-player-name" style="color:#D1D5DB">Empty</span>':
+            '<a href="https://www.baseball-reference.com/players/'+name[0].toLowerCase()+'/'+brUrlKey(name)+'.shtml" target="_blank" class="player-link roster-player-name">'+esc(name)+'</a>'+injBadge+
+            '<div class="roster-player-meta">'+esc(teamAbbr)+' '+esc(posAbbr)+'</div>')+
+        '</div>'+
+      '</div></td>'+
+      '<td class="roster-pct">'+pctRost+'</td>'+
+      '<td class="roster-stat '+(isEmpty?'':pmClass)+'">'+pmStr+'</td>'+
+      statCells+
+      '<td class="roster-stat roster-tot">'+(isEmpty?'--':extracted.tot)+'</td>'+
+      '<td class="roster-stat">'+(isEmpty?'--':extracted.avg)+'</td>'+
     '</tr>';
-    return {sortKey:isBench?1:0,html:trHtml};
-  }).sort(function(a,b){return a.sortKey-b.sortKey;});
+  }
+
+  // Split into batters (active), pitchers (active), bench/IL
+  var activeBatters=[],activePitchers=[],benchRows=[];
+  entries.forEach(function(e){
+    var sid=e.lineupSlotId;
+    if(INACTIVE_SLOTS[sid]){benchRows.push(e);}
+    else if(PITCHER_SLOTS[sid]){activePitchers.push(e);}
+    else{activeBatters.push(e);}
+  });
+
+  function sectionHeader(label,cols){
+    return '<tr class="roster-section-header"><td colspan="'+cols+'" style="text-align:left">'+label+'</td></tr>';
+  }
+  function tableHeader(statDefs,projLabel){
+    var nStats=statDefs.length;
+    return '<tr class="roster-group-header">'+
+        '<th colspan="2"></th>'+
+        '<th colspan="2" class="rgh-research">Research</th>'+
+        '<th colspan="'+nStats+'" class="rgh-proj">'+projLabel+'</th>'+
+        '<th colspan="2" class="rgh-pts">Fantasy Pts</th>'+
+      '</tr>'+
+      '<tr>'+
+        '<th class="th-left" style="width:36px">Slot</th>'+
+        '<th class="th-left">Player</th>'+
+        '<th>%Rost</th>'+
+        '<th>+/-</th>'+
+        statDefs.map(function(sd){return '<th>'+sd.label+'</th>';}).join('')+
+        '<th>Tot</th>'+
+        '<th>Avg</th>'+
+      '</tr>';
+  }
+
+  var bCols=2+2+BATTER_STATS.length+2;
+  var pCols=2+2+PITCHER_STATS.length+2;
+
+  var batterHtml='<table class="roster-table">'+
+    tableHeader(BATTER_STATS,'Season Batting Projections')+
+    sectionHeader('Batters',bCols)+
+    activeBatters.map(function(e){return playerRow(e,BATTER_STATS,false);}).join('')+
+    (benchRows.length?sectionHeader('Bench / IL',bCols)+benchRows.map(function(e){return playerRow(e,BATTER_STATS,true);}).join(''):'')+
+  '</table>';
+
+  var pitcherHtml='<table class="roster-table" style="margin-top:14px">'+
+    tableHeader(PITCHER_STATS,'Season Pitching Projections')+
+    sectionHeader('Pitchers',pCols)+
+    activePitchers.map(function(e){return playerRow(e,PITCHER_STATS,false);}).join('')+
+  '</table>';
 
   mc.innerHTML=
     '<div class="fantasy-card"><div class="fantasy-card-title">Current Matchup — Week '+scoringPeriod+
       '<button onclick="saveEspnConfig(null);espnCfg=null;renderBrewers()" style="font-size:10px;color:#9CA3AF;background:none;border:none;cursor:pointer;font-weight:400">Disconnect</button>'+
     '</div>'+matchupHtml+'</div>'+
-    '<div class="fantasy-card"><div class="fantasy-card-title">My Roster</div>'+
-      '<table class="roster-table"><tr><th>Pos</th><th>Player</th><th>Proj</th></tr>'+
-      rosterRows.map(function(r){return r.html;}).join('')+
-    '</table></div>';
+    '<div class="fantasy-card roster-card"><div class="fantasy-card-title">My Roster</div>'+
+      batterHtml+pitcherHtml+
+    '</div>';
+}
+
+function proTeamAbbr(id){
+  var T={0:'FA',1:'ATL',2:'AZ',3:'BAL',4:'BOS',5:'CHC',6:'CIN',7:'CLE',8:'COL',9:'DET',
+         10:'HOU',11:'KC',12:'LAA',13:'LAD',14:'MIA',15:'MIL',16:'MIN',17:'NYM',18:'NYY',
+         19:'OAK',20:'PHI',21:'PIT',22:'SD',23:'SEA',24:'SF',25:'STL',26:'TB',27:'TEX',
+         28:'TOR',29:'WSH',30:'ATH',33:'MIA'};
+  return T[id]||'';
+}
+function defaultPos(id){
+  var P={1:'SP',2:'C',3:'1B',4:'2B',5:'3B',6:'SS',7:'LF',8:'CF',9:'RF',10:'DH',11:'RP'};
+  return P[id]||'';
 }
 
 function teamName(t){
   if(!t)return 'Unknown';
+  // ESPN Fantasy uses t.name (full), t.abbrev, or t.location+t.nickname
+  if(t.name)return t.name;
   var loc=t.location||'';var nick=t.nickname||'';
-  return (loc+' '+nick).trim()||('Team '+t.id);
+  return (loc+' '+nick).trim()||t.abbrev||('Team '+t.id);
 }
 function findMyTeam(teams,members){
   if(!teams||!teams.length)return null;
