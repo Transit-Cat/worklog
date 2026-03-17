@@ -467,6 +467,37 @@ button:hover{opacity:.85}
 .brew-subtab-bar{display:flex;gap:0;margin-bottom:14px;background:#F3F4F6;border-radius:8px;padding:3px}
 .brew-subtab{flex:1;padding:6px 0;text-align:center;font-size:12px;font-weight:500;color:#6B7280;border:none;background:none;border-radius:6px;cursor:pointer}
 .brew-subtab.active{background:white;color:#111827;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+
+/* Notes tab */
+#notes-tab{display:none}
+#notes-tab.show{display:block}
+#notes-textarea{width:100%;min-height:420px;border:1px solid #E5E7EB;border-radius:12px;padding:16px;font-size:14px;font-family:inherit;color:#374151;resize:vertical;outline:none;box-shadow:0 1px 3px rgba(0,0,0,.04);background:white;box-sizing:border-box;line-height:1.6}
+#notes-textarea:focus{border-color:#A0AEC0;box-shadow:0 0 0 3px rgba(160,174,192,.15)}
+#notes-saved{font-size:11px;color:#9CA3AF;margin-top:6px;height:14px;transition:opacity .3s}
+
+/* Session edit modal */
+#sess-edit-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(3px)}
+#sess-edit-overlay.show{display:flex}
+#sess-edit-modal{background:white;border-radius:14px;padding:24px;width:340px;max-width:90vw;box-shadow:0 12px 40px rgba(0,0,0,.15)}
+#sess-edit-modal h3{font-size:15px;font-weight:600;color:#111827;margin:0 0 4px}
+#sess-edit-subtitle{font-size:12px;color:#9CA3AF;margin-bottom:16px}
+#sess-edit-list{max-height:300px;overflow-y:auto;border:1px solid #E5E7EB;border-radius:8px}
+.sess-edit-obj{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;border-bottom:1px solid #F3F4F6;font-size:13px;color:#374151}
+.sess-edit-obj:last-child{border-bottom:none}
+.sess-edit-obj:hover{background:#F9FAFB}
+.sess-edit-obj .sess-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+#sess-edit-cancel{margin-top:12px;width:100%;background:none;border:1.5px solid #E5E7EB;color:#6B7280;border-radius:8px;padding:8px;font-size:13px;cursor:pointer}
+
+.sess-panel-list{display:flex;flex-direction:column;gap:0}
+.sess-panel-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid #F3F4F6}
+.sess-panel-row:first-child{border-top:none}
+.sess-panel-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.sess-panel-info{flex:1;min-width:0}
+.sess-panel-name{display:block;font-size:13px;color:#374151;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sess-panel-meta{font-size:11px;color:#9CA3AF}
+.sess-panel-dur{font-size:12px;color:#6B7280;flex-shrink:0;min-width:36px;text-align:right}
+.sess-panel-move{background:none;border:1.5px solid #E5E7EB;color:#6B7280;border-radius:6px;padding:3px 10px;font-size:11px;cursor:pointer;flex-shrink:0;margin-left:6px}
+.sess-panel-move:hover{border-color:#A0AEC0;color:#374151}
 </style>
 </head>
 <body>
@@ -509,12 +540,13 @@ button:hover{opacity:.85}
 
 <div id="app">
   <div id="header">
-    <div id="logo">Worklog <span id="version-badge">v10d</span> <span id="sync-dot"></span></div>
+    <div id="logo">Worklog <span id="version-badge">v10e</span> <span id="sync-dot"></span></div>
     <button class="tab-btn active" data-tab="objectives">Objectives</button>
     <button class="tab-btn" data-tab="analytics">Analytics</button>
     <button class="tab-btn" data-tab="calendar">Calendar</button>
     <button class="tab-btn" data-tab="brewers">Brewers</button>
     <button class="tab-btn" data-tab="recipes">Recipes</button>
+    <button class="tab-btn" data-tab="notes">Notes</button>
     <div id="active-pill">
       <span id="active-dot"></span>
       <span id="active-name"></span>
@@ -567,12 +599,22 @@ button:hover{opacity:.85}
     </div>
     <div id="brewers-tab"></div>
     <div id="recipes-tab"></div>
+  <div id="notes-tab"></div>
   </div>
 </div>
 
 <div id="popup-overlay">
   <div id="popup-box">
     <div id="popup-icon">&#x23F0;</div>
+<div id="sess-edit-overlay">
+  <div id="sess-edit-modal">
+    <h3>Move session to&#8230;</h3>
+    <div id="sess-edit-subtitle"></div>
+    <div id="sess-edit-list"></div>
+    <button id="sess-edit-cancel">Cancel</button>
+  </div>
+</div>
+
     <p id="popup-eyebrow">Time Check-in</p>
     <p id="popup-q">Have you actually spent <span id="popup-expected"></span> on</p>
     <p id="popup-name"></p>
@@ -643,7 +685,7 @@ function bootApp(cfg){
     if(data){
       S.objectives=data.objectives||[];S.sessions=data.sessions||[];S.cleared=data.cleared||[];
       S.activeObjId=data.activeObjId||null;S.activeSessId=data.activeSessId||null;
-      S.timeMode=data.timeMode||{};S.calendar=data.calendar||[];S.recipes=data.recipes||[];S.autoTrackEvents=data.autoTrackEvents||{};
+      S.timeMode=data.timeMode||{};S.calendar=data.calendar||[];S.recipes=data.recipes||[];S.autoTrackEvents=data.autoTrackEvents||{};S.notes=data.notes||'';
       renderObjectives();if(S.activeSessId){startTick();armCheckIn();}
     }
     setSyncDot('synced');
@@ -655,13 +697,13 @@ function pushData(){
   if(!db)return;clearTimeout(saveTimer);setSyncDot('syncing');
   saveTimer=setTimeout(function(){
     ignoreNext=true;
-    db.ref('worklog-v4').set({objectives:S.objectives,sessions:S.sessions,cleared:S.cleared,activeObjId:S.activeObjId||null,activeSessId:S.activeSessId||null,timeMode:S.timeMode||{},calendar:S.calendar||[],recipes:S.recipes||[],autoTrackEvents:S.autoTrackEvents||{}})
+    db.ref('worklog-v4').set({objectives:S.objectives,sessions:S.sessions,cleared:S.cleared,activeObjId:S.activeObjId||null,activeSessId:S.activeSessId||null,timeMode:S.timeMode||{},calendar:S.calendar||[],recipes:S.recipes||[],autoTrackEvents:S.autoTrackEvents||{},notes:S.notes||''})
     .then(function(){setSyncDot('synced');}).catch(function(){ignoreNext=false;setSyncDot('error');});
   },400);
 }
 
 var dragSrcId=null;
-var S={objectives:[],sessions:[],cleared:[],calendar:[],recipes:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,renamingId:null,expandedRecipe:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null,autoTrackEvents:{},calAddMode:'plain',brewSubTab:'schedule'};
+var S={objectives:[],sessions:[],cleared:[],calendar:[],recipes:[],activeObjId:null,activeSessId:null,timeMode:{},collapsed:{},addingTo:null,openKebab:null,kebabSection:null,renamingId:null,expandedRecipe:null,tab:'objectives',aTab:'week',showHistory:false,tick:0,calYear:new Date().getFullYear(),calMonth:new Date().getMonth(),calSelected:null,autoTrackEvents:{},calAddMode:'plain',brewSubTab:'schedule',notes:''};
 
 function genId(){return Math.random().toString(36).slice(2,9)+Date.now().toString(36);}
 var PAL=['#DA7756','#4A90D9','#5BA85A','#9B6DD4','#D4A017','#2AACBB','#D45B8A','#7A9E4E'];
@@ -697,13 +739,13 @@ function stopRecording(){
   if(!S.activeSessId)return;var now=Date.now();
   S.sessions=S.sessions.map(function(s){return s.id===S.activeSessId?Object.assign({},s,{end:now,duration:now-s.start}):s;});
   S.activeSessId=null;S.activeObjId=null;clearTimeout(checkInTimeout);stopTick();
-  pushData();updateHeader();updateTree();
+  pushData();updateHeader();updateTree();updateMediaSession(null);
 }
 function startRecording(objId){
   if(S.activeSessId)stopRecording();
   var sess={id:genId(),objectiveId:objId,start:Date.now(),end:null,duration:null};
   S.sessions.push(sess);S.activeSessId=sess.id;S.activeObjId=objId;
-  pushData();startTick();armCheckIn();updateHeader();updateTree();
+  pushData();startTick();armCheckIn();updateHeader();updateTree();updateMediaSession(S.objectives.find(function(o){return o.id===objId;})?S.objectives.find(function(o){return o.id===objId;}).text:null);
 }
 function toggleRecord(objId){if(S.activeObjId===objId)stopRecording();else startRecording(objId);}
 
@@ -1087,6 +1129,48 @@ function renderAnalytics(){
     if(pie.length)pieChart=new Chart(document.getElementById('donut-canvas'),{type:'doughnut',data:makeDonutData(pie),options:donutOpts});
     if(parentPie.length)pieChart2=new Chart(document.getElementById('donut-canvas2'),{type:'doughnut',data:makeDonutData(parentPie),options:donutOpts});
   }
+  // Recent sessions panel
+  renderSessionsPanel(since);
+}
+
+function renderSessionsPanel(since){
+  var el=document.getElementById('analytics-content');
+  if(!el)return;
+  // Build list of completed sessions in this period, newest first
+  var sess=S.sessions.filter(function(s){
+    return s.start>=(since||0)&&(s.end||s.duration);
+  }).slice().sort(function(a,b){return b.start-a.start;}).slice(0,40);
+  if(!sess.length)return;
+  function objName(id){
+    function find(objs){for(var i=0;i<objs.length;i++){if(objs[i].id===id)return objs[i].text;var r=find(objs[i].children||[]);if(r)return r;}return null;}
+    return find(S.objectives)||'Unknown';
+  }
+  function objColor(id){
+    function find(objs){for(var i=0;i<objs.length;i++){if(objs[i].id===id)return objs[i].color;var r=find(objs[i].children||[]);if(r)return r;}return null;}
+    return find(S.objectives)||'#9CA3AF';
+  }
+  var rows=sess.map(function(s){
+    var dur=s.duration||(s.end-s.start);
+    var d=new Date(s.start);
+    var dateStr=d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    var timeStr=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    var color=objColor(s.objectiveId);
+    return '<div class="sess-panel-row" data-sess-id="'+s.id+'">'+
+      '<span class="sess-panel-dot" style="background:'+color+'"></span>'+
+      '<div class="sess-panel-info">'+
+        '<span class="sess-panel-name">'+esc(objName(s.objectiveId))+'</span>'+
+        '<span class="sess-panel-meta">'+dateStr+' &bull; '+timeStr+'</span>'+
+      '</div>'+
+      '<span class="sess-panel-dur">'+fmtMs(dur)+'</span>'+
+      '<button class="sess-panel-move" data-id="'+s.id+'" title="Move to different objective">Move</button>'+
+    '</div>';
+  }).join('');
+  var card='<div class="analytics-card" id="sessions-panel-card"><div class="analytics-header"><span class="analytics-title">Sessions</span><span class="analytics-total" style="font-size:11px;color:#9CA3AF">click Move to reassign</span></div>'+
+    '<div class="sess-panel-list">'+rows+'</div></div>';
+  el.innerHTML+=card;
+  document.querySelectorAll('.sess-panel-move').forEach(function(btn){
+    btn.onclick=function(e){e.stopPropagation();openSessEdit(btn.dataset.id);};
+  });
 }
 
 
@@ -1687,6 +1771,25 @@ function renderRecipes(){
     '<div id="recipe-list" style="margin-top:14px">'+list+'</div>';
   bindRecipes();
 }
+function renderNotes(){
+  var el=document.getElementById('notes-tab');
+  if(!el)return;
+  el.innerHTML='<textarea id="notes-textarea" placeholder="Write anything here..."></textarea><div id="notes-saved"></div>';
+  var ta=document.getElementById('notes-textarea');
+  var saved=document.getElementById('notes-saved');
+  ta.value=S.notes||'';
+  var noteTimer=null;
+  ta.oninput=function(){
+    S.notes=ta.value;
+    clearTimeout(noteTimer);
+    saved.textContent='';
+    noteTimer=setTimeout(function(){
+      pushData();
+      saved.textContent='Saved';
+      setTimeout(function(){saved.textContent='';},1500);
+    },600);
+  };
+}
 function recipeCardHtml(r){
   var isOpen=S.expandedRecipe===r.id;
   var stepCount=r.steps?r.steps.length:0;
@@ -2250,10 +2353,12 @@ function bindStaticEvents(){
     document.getElementById('calendar-tab').classList.toggle('show',S.tab==='calendar');
     document.getElementById('brewers-tab').classList.toggle('show',S.tab==='brewers');
     document.getElementById('recipes-tab').classList.toggle('show',S.tab==='recipes');
+    document.getElementById('notes-tab').classList.toggle('show',S.tab==='notes');
     if(S.tab==='analytics')renderAnalytics();
     if(S.tab==='calendar')renderCalendar();
     if(S.tab==='brewers')renderBrewers();else{clearInterval(liveTickerInterval);}
     if(S.tab==='recipes')renderRecipes();
+    if(S.tab==='notes')renderNotes();
   };});
   document.querySelectorAll('.atab-btn').forEach(function(btn){btn.onclick=function(){S.aTab=btn.dataset.atab;document.querySelectorAll('.atab-btn').forEach(function(b){b.classList.toggle('active',b===btn);});renderAnalytics();};});
   document.getElementById('btn-show-add').onclick=function(){document.getElementById('add-root-row').style.display='flex';document.getElementById('btn-show-add').style.display='none';document.getElementById('new-root-input').value='';document.getElementById('new-root-input').focus();};
@@ -2265,6 +2370,62 @@ function bindStaticEvents(){
   document.getElementById('cal-prev').onclick=function(){S.calMonth--;if(S.calMonth<0){S.calMonth=11;S.calYear--;}renderCalendar();};
   document.getElementById('cal-next').onclick=function(){S.calMonth++;if(S.calMonth>11){S.calMonth=0;S.calYear++;}renderCalendar();};
 }
+
+function openSessEdit(sessId){
+  var sess=S.sessions.find(function(s){return s.id===sessId;});
+  if(!sess)return;
+  var dur=sess.duration||(sess.end?sess.end-sess.start:0);
+  var subtitle=document.getElementById('sess-edit-subtitle');
+  subtitle.textContent=fmtMs(dur)+' on '+new Date(sess.start).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+  // Build flat list of all objectives
+  var list=document.getElementById('sess-edit-list');
+  function flatObjs(objs,depth){
+    var rows=[];
+    objs.forEach(function(o){
+      rows.push({obj:o,depth:depth});
+      if(o.children&&o.children.length)rows=rows.concat(flatObjs(o.children,depth+1));
+    });
+    return rows;
+  }
+  var flat=flatObjs(S.objectives,0);
+  list.innerHTML=flat.map(function(item){
+    var o=item.obj;
+    var isCurrent=o.id===sess.objectiveId;
+    var color=o.color||'#9CA3AF';
+    return '<div class="sess-edit-obj'+(isCurrent?' active':'')+'" data-id="'+o.id+'" style="padding-left:'+(12+item.depth*16)+'px'+(isCurrent?';background:#F0F7FF':'')+'">'+
+      '<span class="sess-dot" style="background:'+color+'"></span>'+
+      '<span>'+(item.depth>0?'↳ ':'')+esc(o.text)+'</span>'+
+      (isCurrent?'<span style="margin-left:auto;font-size:10px;color:#9CA3AF">current</span>':'')+
+    '</div>';
+  }).join('');
+  list.querySelectorAll('.sess-edit-obj').forEach(function(row){
+    row.onclick=function(){
+      var newObjId=row.dataset.id;
+      if(newObjId===sess.objectiveId){closeSessEdit();return;}
+      S.sessions=S.sessions.map(function(s){return s.id===sessId?Object.assign({},s,{objectiveId:newObjId}):s;});
+      pushData();updateTree();updateHeader();renderSessionsPanel(0);closeSessEdit();
+    };
+  });
+  document.getElementById('sess-edit-overlay').classList.add('show');
+}
+function closeSessEdit(){document.getElementById('sess-edit-overlay').classList.remove('show');}
+document.getElementById('sess-edit-cancel').onclick=closeSessEdit;
+document.getElementById('sess-edit-overlay').onclick=function(e){if(e.target===this)closeSessEdit();};
+
+
+function updateMediaSession(objName){
+  if(!('mediaSession' in navigator))return;
+  if(!objName){navigator.mediaSession.metadata=null;navigator.mediaSession.playbackState='none';return;}
+  navigator.mediaSession.metadata=new MediaMetadata({
+    title:objName,
+    artist:'Worklog',
+    album:'Recording'
+  });
+  navigator.mediaSession.playbackState='playing';
+  navigator.mediaSession.setActionHandler('stop',function(){stopRecording();});
+  navigator.mediaSession.setActionHandler('pause',function(){stopRecording();});
+}
+
 </script>
 </body>
 </html>
